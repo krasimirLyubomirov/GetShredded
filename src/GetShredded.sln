@@ -5,9 +5,9 @@ VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetShredded.Web", "GetShredded.Web\GetShredded.Web.csproj", "{E55A2D18-F9A0-4823-91AF-D08DF6CD7068}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetShredded.Data", "GetShredded.Data\GetShredded.Data.csproj", "{3D710660-7E78-47CA-B2E7-457905904402}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetShredded.Data", "GetShredded.Data\GetShredded.Data.csproj", "{3D710660-7E78-47CA-B2E7-457905904402}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetShredded.Models", "GetShredded.Models\GetShredded.Models.csproj", "{1BD81E79-BDB6-4A1C-BFC6-2B621A5D9C90}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetShredded.Models", "GetShredded.Models\GetShredded.Models.csproj", "{1BD81E79-BDB6-4A1C-BFC6-2B621A5D9C90}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

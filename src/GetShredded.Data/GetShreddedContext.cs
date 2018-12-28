@@ -1,4 +1,5 @@
-﻿using GetShredded.Models;
+﻿using GetShredded.Data.Configuration;
+using GetShredded.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,12 +12,38 @@ namespace GetShredded.Data
         {
         }
 
+        public DbSet<Comment> Comments { get; set; }
+
+        public DbSet<DiaryRating> DiaryRatings { get; set; }
+
+        public DbSet<DiaryType> DiaryTypes { get; set; }
+
+        public DbSet<GetShreddedDiary> GetShreddedDiaries { get; set; }
+
+        public DbSet<GetShreddedRating> GetShreddedRatings { get; set; }
+
+        public DbSet<GetShreddedUserDiary> GetShreddedUserDiaries { get; set; }
+
+        public DbSet<Message> Messages { get; set; }
+
+        public DbSet<Notification> Notifications { get; set; }
+
+        public DbSet<Page> Pages { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.ApplyConfiguration(new CommentConfiguration());
+            builder.ApplyConfiguration(new DiaryRatingConfiguration());
+            builder.ApplyConfiguration(new DiaryTypeConfiguration());
+            builder.ApplyConfiguration(new GetShreddedDiaryConfiguration());
+            builder.ApplyConfiguration(new GetShreddedRatingConfiguration());
+            builder.ApplyConfiguration(new GetShreddedUserConfiguration());
+            builder.ApplyConfiguration(new GetShreddedUserDiaryConfiguration());
+            builder.ApplyConfiguration(new MessageConfiguration());
+            builder.ApplyConfiguration(new NotificationConfiguration());
+            builder.ApplyConfiguration(new PageConfiguration());
+
             base.OnModelCreating(builder);
-            // Customize the ASP.NET Identity model and override the defaults if needed.
-            // For example, you can rename the ASP.NET Identity table names and more.
-            // Add your customizations after calling base.OnModelCreating(builder);
         }
     }
 }

@@ -14,11 +14,9 @@ namespace GetShredded.Models
         public int? GetShreddedDiaryId { get; set; }
         
         public virtual GetShreddedDiary GetShreddedDiary { get; set; }
-
-        [Required]
+        
         public string Message { get; set; }
-
-        [Required]
+        
         public DateTime CommentedOn { get; set; }
     }
 }
