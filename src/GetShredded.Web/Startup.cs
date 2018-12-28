@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using GetShredded.Web.Areas.Identity.Data;
+using GetShredded.Data;
+using GetShredded.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
@@ -39,7 +40,15 @@ namespace GetShredded.Web
                 options.UseSqlServer(
                     this.Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<GetShreddedUser>()
+            services.AddDefaultIdentity<GetShreddedUser>(
+                    options =>
+                    {
+                        options.Password.RequiredLength = 6;
+                        options.Password.RequireLowercase = false;
+                        options.Password.RequireNonAlphanumeric = false;
+                        options.Password.RequireUppercase = false;
+                        options.Password.RequireDigit = false;
+                    })
                 .AddEntityFrameworkStores<GetShreddedContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);

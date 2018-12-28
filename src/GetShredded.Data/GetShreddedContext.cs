@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using GetShredded.Web.Areas.Identity.Data;
-using Microsoft.AspNetCore.Identity;
+﻿using GetShredded.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace GetShredded.Web.Models
+namespace GetShredded.Data
 {
     public class GetShreddedContext : IdentityDbContext<GetShreddedUser>
     {

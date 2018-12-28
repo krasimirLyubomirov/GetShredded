@@ -11,4 +11,9 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.6" PrivateAssets="All" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GetShredded.Data\GetShredded.Data.csproj" />
+    <ProjectReference Include="..\GetShredded.Models\GetShredded.Models.csproj" />
+  </ItemGroup>
+
 </Project>
