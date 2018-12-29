@@ -1,0 +1,39 @@
+﻿@using GetShredded.Common
+@using GetShredded.ViewModel.Input.Users
+@model LoginInputModel
+@{
+    ViewData["Title"] = "Login";
+    var error = ViewData[GlobalConstants.ModelError];
+}
+
+<div class="row justify-content-center" style="margin-top: 10em">
+    <div class="col-md-4">
+        <h2 class="d-flex justify-content-center text-dark">@ViewData["Title"]</h2>
+        @if (error != null)
+        {
+            <p class="text-danger">@error</p>
+        }
+        <form method="post" asp-action="Login" asp-controller="Users">
+
+            <hr class="h2" />
+            <div class="form-group">
+                <label asp-for="Username" class="d-flex justify-content-center text-dark "></label>
+                <input asp-for="Username" class="form-control" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="d-flex justify-content-center text-dark "></label>
+                <input asp-for="Password" type="password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <hr class="h2" />
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+        </form>
+
+        <div>
+            <a asp-action="Register" asp-controller="Users"><span class="text-dark">Register as a new user</span></a>
+        </div>
+    </div>
+</div>

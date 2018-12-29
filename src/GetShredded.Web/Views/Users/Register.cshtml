@@ -1,0 +1,57 @@
+﻿@using GetShredded.Common
+@using GetShredded.ViewModel.Input.Users
+@model RegisterInputModel
+@{
+    ViewData["Title"] = "Register";
+    var error = ViewData[GlobalConstants.ModelError];
+}
+<div class="mt-5">
+    <h1 class="text-center">Register</h1>
+    <div class="container col-4 offset-4">
+        <hr class="bg-secondary" />
+        <form class="mx-auto" asp-controller="Users" asp-action="Register" method="post">
+            @if (error != null)
+            {
+            <p class="text-danger">@error</p>
+            }
+            <div class="form-group text-center">
+                <label asp-for="Username" class="text-center"></label>
+                <input asp-for="Username" class="form-control" placeholder="Username..." />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <div class="form-group text-center">
+                <label asp-for="FirstName" class="text-center"></label>
+                <input asp-for="FirstName" class="form-control" placeholder="FirstName..." />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group text-center">
+                <label asp-for="LastName" class="text-center"></label>
+                <input asp-for="LastName" class="form-control" placeholder="LastName..." />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group text-center">
+                <label asp-for="Email" class="text-center"></label>
+                <input asp-for="Email" class="form-control" placeholder="Email..." />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group text-center">
+                <label asp-for="Password" class="text-center"></label>
+                <input asp-for="Password" class="form-control" placeholder="Password..." />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group text-center">
+                <label asp-for="ConfirmPassword" class="text-center"></label>
+                <input asp-for="ConfirmPassword" class="form-control" placeholder="Confirm Password..." />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary">Register</button>
+            </div>
+            <hr class="bg-secondary" />
+        </form>
+    </div>
+</div>
+@section scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    @{ await Html.RenderPartialAsync("_MyScriptsPartial"); }
+}

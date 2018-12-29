@@ -6,14 +6,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="8.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="jquery.datatables" Version="1.10.15" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.6" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GetShredded.Common\GetShredded.Common.csproj" />
     <ProjectReference Include="..\GetShredded.Data\GetShredded.Data.csproj" />
     <ProjectReference Include="..\GetShredded.Models\GetShredded.Models.csproj" />
+    <ProjectReference Include="..\GetShredded.Services\GetShredded.Services.csproj" />
   </ItemGroup>
 
 </Project>
