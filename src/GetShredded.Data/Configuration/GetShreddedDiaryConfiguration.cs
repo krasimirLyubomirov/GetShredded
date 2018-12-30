@@ -1,4 +1,4 @@
-﻿using GetShredded.Data.Constants;
+﻿using GetShredded.Common;
 using GetShredded.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -28,7 +28,7 @@ namespace GetShredded.Data.Configuration
 
             builder.Property(x => x.Summary)
                 .IsRequired(false)
-                .HasMaxLength(ConfigurationConstants.GetShreddedDiarySummary);
+                .HasMaxLength(GlobalConstants.GetShreddedDiarySummary);
 
             builder.HasOne(x => x.User)
                 .WithMany(x => x.GetShreddedDiaries)
@@ -36,7 +36,7 @@ namespace GetShredded.Data.Configuration
                 .OnDelete(DeleteBehavior.SetNull);
 
             builder.Property(x => x.Title).IsRequired()
-                .HasMaxLength(ConfigurationConstants.TitleLength);
+                .HasMaxLength(GlobalConstants.TitleLength);
 
             builder.Ignore(x => x.Rating);
 

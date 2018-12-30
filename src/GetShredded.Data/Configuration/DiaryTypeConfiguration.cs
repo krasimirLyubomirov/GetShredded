@@ -1,4 +1,4 @@
-﻿using GetShredded.Data.Constants;
+﻿using GetShredded.Common;
 using GetShredded.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -13,7 +13,7 @@ namespace GetShredded.Data.Configuration
 
             builder.Property(x => x.Name)
                 .IsRequired()
-                .HasMaxLength(ConfigurationConstants.TitleLength);
+                .HasMaxLength(GlobalConstants.TitleLength);
 
             builder.HasMany(x => x.Diaries)
                 .WithOne(x => x.Type)

@@ -1,4 +1,4 @@
-﻿using GetShredded.Data.Constants;
+﻿using GetShredded.Common;
 using GetShredded.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -13,11 +13,11 @@ namespace GetShredded.Data.Configuration
 
             builder.Property(x => x.Title)
                 .IsRequired(false)
-                .HasMaxLength(ConfigurationConstants.TitleLength);
+                .HasMaxLength(GlobalConstants.TitleLength);
 
             builder.Property(x => x.Content)
                 .IsRequired()
-                .HasMaxLength(ConfigurationConstants.PageContentLength);
+                .HasMaxLength(GlobalConstants.PageContentLength);
 
             builder.HasOne(x => x.GetShreddedUser)
                 .WithMany(x => x.Pages)

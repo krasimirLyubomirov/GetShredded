@@ -1,4 +1,4 @@
-﻿using GetShredded.Data.Constants;
+﻿using GetShredded.Common;
 using GetShredded.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -22,7 +22,7 @@ namespace GetShredded.Data.Configuration
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder.Property(x => x.Text).IsRequired()
-                .HasMaxLength(ConfigurationConstants.MessageContentLength);
+                .HasMaxLength(GlobalConstants.MessageContentLength);
         }
     }
 }

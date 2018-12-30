@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GetShredded.Common\GetShredded.Common.csproj" />
     <ProjectReference Include="..\GetShredded.Models\GetShredded.Models.csproj" />
   </ItemGroup>
 

@@ -1,4 +1,4 @@
-﻿using GetShredded.Data.Constants;
+﻿using GetShredded.Common;
 using GetShredded.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -13,7 +13,7 @@ namespace GetShredded.Data.Configuration
 
             builder.Property(x => x.Message)
                 .IsRequired(true)
-                .HasMaxLength(ConfigurationConstants.CommentContentLength);
+                .HasMaxLength(GlobalConstants.CommentContentLength);
 
             builder.Property(x => x.CommentedOn).IsRequired(true);
 
