@@ -69,5 +69,11 @@
         public const string NoTitleAdded = "Page has no title";
 
         public const string DeletedUser = "Deleted User";
+
+        public const string ErrorOnDeleteUser = "User was not deleted. Something went wrong!";
+
+        public const string Success = "Success";
+
+        public const string Failed = "Failed the task";
     }
 }
