@@ -41,6 +41,6 @@ namespace GetShredded.ViewModel.Output.Diary
 
         public DiaryTypeOutputModel Type { get; set; }
 
-        public UserOutputDiaryModel Author { get; set; }
+        public UserOutputDiaryModel User { get; set; }
     }
 }
