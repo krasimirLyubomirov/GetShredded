@@ -5,7 +5,7 @@ namespace GetShredded.Services.Contracts
 {
     public interface IPageService
     {
-        void DeletePage(int storyId, int chapterid, string username);
+        void DeletePage(int diaryId, int pageId, string username);
 
         void AddPage(PageInputModel inputModel);
 

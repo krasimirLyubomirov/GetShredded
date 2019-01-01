@@ -75,5 +75,12 @@
         public const string Success = "Success";
 
         public const string Failed = "Failed the task";
+
+        public const string NotUser = "For this action need to be User of the GetShredded Diary";
+
+        public const string UserHasNoRights = "User need role admin";
+
+        public const string NotValidPageDiaryConnection 
+            = "This Diary with id: {0} or Page with id: {1} don't have a connection";
     }
 }
