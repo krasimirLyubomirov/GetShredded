@@ -7,8 +7,6 @@ namespace GetShredded.Services.Contracts
     {
         void SendMessage(MessageInputModel inputModel);
 
-        bool CanSendMessage(string senderName, string receiverName);
-
         int NewMessages(string userId);
 
         InformationViewModel Information(string username);

@@ -13,7 +13,7 @@ namespace GetShredded.Services.Contracts
 
         Task DeleteDiary(int id, string username);
 
-        ICollection<DiaryOutputModel> Types();
+        ICollection<DiaryTypeOutputModel> Types();
 
         Task Follow(string username, int id);
 

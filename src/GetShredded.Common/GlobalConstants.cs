@@ -82,5 +82,30 @@
 
         public const string NotValidPageDiaryConnection 
             = "This Diary with id: {0} or Page with id: {1} don't have a connection";
+
+        public const string NotificationMessage = "{0} Diary you are following just added new Page";
+
+        public const string All = "All";
+
+        public const string AlreadyFollow = "{0} already is following this diary";
+
+        public const string UserDontFollow = "User has no following on this diary";
+
+        public const string DefaultNoImage 
+            = "https://res.cloudinary.com/dbwuk5rsq/image/upload/v1544052092/noimagedefault.jpg";
+
+        public const string MissingDiary = "No GetShredded Diary with such Id";
+
+        public const string AlreadyRated = "User already rated this diary";
+
+        public const string UserRights = "User don't have rights to make this action";
+
+        public const string WithoutRecord = "No such record!";
+
+        public const string AccCloudinarySecret = "Sb7IEefRr6LqOghHeB9OzKhbouU";
+
+        public const string AccCloudinaryApiKey = "923729842421433";
+
+        public const string CloudinaryCloudName = "dvo7kkcme";
     }
 }
