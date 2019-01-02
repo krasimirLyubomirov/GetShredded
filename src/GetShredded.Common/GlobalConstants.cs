@@ -107,5 +107,7 @@
         public const string AccCloudinaryApiKey = "923729842421433";
 
         public const string CloudinaryCloudName = "dvo7kkcme";
+
+        public const string NoSuchType = "Searched {0}, does not exist";
     }
 }

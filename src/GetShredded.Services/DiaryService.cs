@@ -24,9 +24,8 @@ namespace GetShredded.Services
         public DiaryService(
             INotificationService notificationService, 
             UserManager<GetShreddedUser> userManager,
-            SignInManager<GetShreddedUser> signInManager,
             GetShreddedContext context, IMapper mapper)
-            : base(userManager, signInManager, context, mapper)
+            : base(userManager, context, mapper)
         {
             this.NotificationService = notificationService;
         }
@@ -197,6 +196,28 @@ namespace GetShredded.Services
                 .Any(x => x.GetShreddedDiaryId == diaryId && x.DiaryRating.GetShreddedUserId == user.Id);
 
             return rated;
+        }
+
+        public ICollection<DiaryOutputModel> FollowedDiaries(string username)
+        {
+            var diaries = this.Context.GetShreddedDiaries
+                .Include(x => x.Followers)
+                .Where(x => x.Followers.Any(z => z.GetShreddedUser.UserName == username))
+                .ProjectTo<DiaryOutputModel>(Mapper.ConfigurationProvider).ToList();
+
+            return diaries;
+        }
+
+        public ICollection<DiaryOutputModel> FollowedDiariesByType(string username, string type)
+        {
+            var diaries = this.FollowedDiaries(username);
+
+            if (type == GlobalConstants.All)
+            {
+                return diaries;
+            }
+
+            return diaries.Where(x => x.Type.Type == type).ToList();
         }
 
         public async Task DeleteDiary(int id, string username)

@@ -11,7 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GetShredded.Data\GetShredded.Data.csproj" />
-    <ProjectReference Include="..\GetShredded.ViewModel\GetShredded.ViewModel.csproj" />
+    <ProjectReference Include="..\GetShredded.ViewModel\GetShredded.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>

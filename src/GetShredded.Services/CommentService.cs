@@ -12,10 +12,9 @@ namespace GetShredded.Services
     {
         public CommentService(
             UserManager<GetShreddedUser> userManager,
-            SignInManager<GetShreddedUser> signInManager,
             GetShreddedContext context,
             IMapper mapper)
-            : base(userManager, signInManager, context, mapper)
+            : base(userManager, context, mapper)
         {
         }
 

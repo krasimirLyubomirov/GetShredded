@@ -9,12 +9,11 @@ namespace GetShredded.Services
     {
         protected BaseService(
             UserManager<GetShreddedUser> userManager,
-            SignInManager<GetShreddedUser> signInManager,
             GetShreddedContext context,
             IMapper mapper)
         {
             this.UserManager = userManager;
-            this.SingInManager = signInManager;
+
             this.Context = context;
             this.Mapper = mapper;
         }
@@ -22,8 +21,6 @@ namespace GetShredded.Services
         protected IMapper Mapper { get; }
 
         protected GetShreddedContext Context { get; }
-
-        protected SignInManager<GetShreddedUser> SingInManager { get; }
 
         protected UserManager<GetShreddedUser> UserManager { get; }
     }

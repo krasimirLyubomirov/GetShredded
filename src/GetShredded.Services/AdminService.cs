@@ -100,7 +100,7 @@ namespace GetShredded.Services
 
             if (!roleExist && currentRole.Any())
             {
-                result = await this.UserManager.RemoveFromRoleAsync(user, currentRole.First());
+                await this.UserManager.RemoveFromRoleAsync(user, currentRole.First());
                 return IdentityResult.Success;
             }
 
@@ -110,7 +110,7 @@ namespace GetShredded.Services
             }
             else
             {
-                result = await this.UserManager.RemoveFromRoleAsync(user, currentRole.First());
+                await this.UserManager.RemoveFromRoleAsync(user, currentRole.First());
                 result = await this.UserManager.AddToRoleAsync(user, model.UpdatedRole);
             }
 

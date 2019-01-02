@@ -17,11 +17,10 @@ namespace GetShredded.Services
     {
         public PageService(
             UserManager<GetShreddedUser> userManager,
-            SignInManager<GetShreddedUser> signInManager,
             GetShreddedContext context, 
             IMapper mapper, 
             INotificationService notificationService)
-            : base(userManager, signInManager, context, mapper)
+            : base(userManager, context, mapper)
         {
             this.NotificationService = notificationService;
         }

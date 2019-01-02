@@ -9,11 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetShredded.Data", "GetShre
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetShredded.Models", "GetShredded.Models\GetShredded.Models.csproj", "{1BD81E79-BDB6-4A1C-BFC6-2B621A5D9C90}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetShredded.Common", "GetShredded.Common\GetShredded.Common.csproj", "{2A93FA2D-1BA6-4021-8715-734628CA4CE9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetShredded.Common", "GetShredded.Common\GetShredded.Common.csproj", "{2A93FA2D-1BA6-4021-8715-734628CA4CE9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetShredded.Services", "GetShredded.Services\GetShredded.Services.csproj", "{A27E8EB5-51D2-43CD-AEA7-A0EA7FBD7B4B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetShredded.Services", "GetShredded.Services\GetShredded.Services.csproj", "{A27E8EB5-51D2-43CD-AEA7-A0EA7FBD7B4B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetShredded.ViewModel", "GetShredded.ViewModel\GetShredded.ViewModel.csproj", "{F01446F9-F142-474A-BD89-378D0E1EF9B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetShredded.ViewModels", "GetShredded.ViewModel\GetShredded.ViewModels.csproj", "{F01446F9-F142-474A-BD89-378D0E1EF9B1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

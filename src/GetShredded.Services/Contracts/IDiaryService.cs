@@ -28,5 +28,9 @@ namespace GetShredded.Services.Contracts
         void AddRating(int diaryId, double rating, string username);
 
         bool AlreadyRated(int diaryId, string username);
+
+        ICollection<DiaryOutputModel> FollowedDiaries(string username);
+
+        ICollection<DiaryOutputModel> FollowedDiariesByType(string username, string type);
     }
 }

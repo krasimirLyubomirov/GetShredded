@@ -14,9 +14,9 @@ namespace GetShredded.Services
     {
         public NotificationService(
             UserManager<GetShreddedUser> userManager,
-            SignInManager<GetShreddedUser> signInManager,
-            GetShreddedContext context, IMapper mapper)
-            : base(userManager, signInManager, context, mapper)
+            GetShreddedContext context, 
+            IMapper mapper)
+            : base(userManager, context, mapper)
         {
         }
 
@@ -28,18 +28,18 @@ namespace GetShredded.Services
                 .Where(x => x.FollowedDiaries
                     .Any(xx => xx.GetShreddedDiaryId == diaryId && x.UserName != username)).ToArray();
 
-            foreach (var u in users)
+            foreach (var user in users)
             {
                 var notice = new Notification
                 {
-                    GetShreddedUserId = u.Id,
+                    GetShreddedUserId = user.Id,
                     Message = string.Format(GlobalConstants.NotificationMessage, diaryTitle),
                     Seen = false,
                     UpdatedDiaryId = diaryId
                 };
 
                 notificationRange.Add(notice);
-                u.Notifications.Add(notice);
+                user.Notifications.Add(notice);
             }
 
             this.Context.Notifications.AddRange(notificationRange);
@@ -71,9 +71,7 @@ namespace GetShredded.Services
 
         public void DeleteAllNotifications(string username)
         {
-            var notifications = this.Context.Notifications
-                .Where(x => x.GetShreddedUser.UserName == username)
-                .ToArray();
+            var notifications = this.Context.Notifications.Where(x => x.GetShreddedUser.UserName == username).ToArray();
 
             this.Context.Notifications.RemoveRange(notifications);
 
