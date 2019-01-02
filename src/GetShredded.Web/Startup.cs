@@ -2,6 +2,7 @@
 using GetShredded.Models;
 using GetShredded.Services;
 using GetShredded.Services.Contracts;
+using GetShredded.Web.Middlewares;
 
 namespace GetShredded.Web
 {
@@ -14,7 +15,6 @@ namespace GetShredded.Web
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.AspNetCore.Authentication.Cookies;
     using Microsoft.Extensions.Logging;
 
     public class Startup
@@ -52,13 +52,21 @@ namespace GetShredded.Web
                 .AddDefaultTokenProviders();
 
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IAdminService, AdminService>();
+            services.AddScoped<IDiaryService, DiaryService>();
+            services.AddScoped<INotificationService, NotificationService>();
+            services.AddScoped<ICommentService, CommentService>();
+            services.AddScoped<IMessageService, MessageService>();
+            services.AddScoped<IPageService, PageService>();
+            services.AddScoped<IApiService, ApiService>();
 
             services.AddAutoMapper(x => x.AddProfile<GetShreddedProfile>());
 
             services.AddMvc(opt =>
             {
-                opt.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
-            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+                opt.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+            })
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
@@ -73,7 +81,8 @@ namespace GetShredded.Web
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
-            
+
+            app.UseSeedRolesMiddleware();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -89,6 +98,7 @@ namespace GetShredded.Web
                      name: "default",
                      template: "{controller=Home}/{action=Index}/{id?}");
             });
+
             app.UseCookiePolicy();
         }
     }
