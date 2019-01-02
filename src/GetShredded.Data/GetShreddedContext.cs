@@ -30,6 +30,8 @@ namespace GetShredded.Data
 
         public DbSet<Page> Pages { get; set; }
 
+        public DbSet<DatabaseLog> Logs { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new CommentConfiguration());

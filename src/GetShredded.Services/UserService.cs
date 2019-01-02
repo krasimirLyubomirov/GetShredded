@@ -22,9 +22,12 @@ namespace GetShredded.Services
             SignInManager<GetShreddedUser> signInManager,
             GetShreddedContext context,
             IMapper mapper)
-            : base(userManager, signInManager, context, mapper)
+            : base(userManager, context, mapper)
         {
+            this.SignInManager = signInManager;
         }
+
+        protected SignInManager<GetShreddedUser> SignInManager { get; }
 
         public SignInResult LogUser(LoginInputModel loginModel)
         {
@@ -37,7 +40,7 @@ namespace GetShredded.Services
             }
 
             var password = loginModel.Password;
-            var result = this.SingInManager.PasswordSignInAsync(user, password, true, false).Result;
+            var result = this.SignInManager.PasswordSignInAsync(user, password, true, false).Result;
 
             return result;
         }
@@ -56,7 +59,7 @@ namespace GetShredded.Services
 
             await this.UserManager.CreateAsync(user);
             await this.UserManager.AddPasswordAsync(user, registerModel.Password);
-            var result = await this.SingInManager.PasswordSignInAsync(user, registerModel.Password, true, false);
+            var result = await this.SignInManager.PasswordSignInAsync(user, registerModel.Password, true, false);
 
             return result;
         }
@@ -77,7 +80,7 @@ namespace GetShredded.Services
 
         public async void Logout()
         {
-            await this.SingInManager.SignOutAsync();
+            await this.SignInManager.SignOutAsync();
         }
 
         public UserOutputModel GetUser(string username)

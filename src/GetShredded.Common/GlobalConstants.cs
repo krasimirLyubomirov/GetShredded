@@ -109,5 +109,9 @@
         public const string CloudinaryCloudName = "dvo7kkcme";
 
         public const string NoSuchType = "Searched {0}, does not exist";
+
+        public const string ErrorPageRoute = "/Home/Error";
+
+        public const string Anonymous = "anonymous";
     }
 }

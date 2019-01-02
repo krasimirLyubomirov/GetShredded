@@ -2,6 +2,7 @@
 using GetShredded.Models;
 using GetShredded.Services;
 using GetShredded.Services.Contracts;
+using GetShredded.Web.Extensions;
 using GetShredded.Web.Middlewares;
 
 namespace GetShredded.Web
@@ -64,6 +65,8 @@ namespace GetShredded.Web
 
             services.AddMvc(opt =>
             {
+                opt.Filters.Add<CustomActionFilterAttribute>();
+                opt.Filters.Add<LogExceptionHandleActionFilter>();
                 opt.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
             })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);

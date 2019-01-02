@@ -17,10 +17,9 @@ namespace GetShredded.Services
     {
         public AdminService(
             UserManager<GetShreddedUser> userManager,
-            SignInManager<GetShreddedUser> signInManager,
             GetShreddedContext context, IMapper mapper, 
             RoleManager<IdentityRole> roleManager)
-            : base(userManager, signInManager, context, mapper)
+            : base(userManager, context, mapper)
         {
             this.RoleManager = roleManager;
         }
