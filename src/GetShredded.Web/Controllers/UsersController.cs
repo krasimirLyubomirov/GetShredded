@@ -7,11 +7,12 @@
     using Microsoft.AspNetCore.Mvc;
     using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
+    [Authorize]
     public class UsersController : Controller
     {
         public UsersController(IUserService userService)
         {
-            this.UserService = userService;
+            UserService = userService;
         }
 
         protected IUserService UserService { get; }
@@ -20,7 +21,12 @@
         [AllowAnonymous]
         public IActionResult Login()
         {
-            return View();
+            if (this.User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            return this.View();
         }
 
         [HttpPost]
@@ -29,15 +35,15 @@
         {
             if (!ModelState.IsValid)
             {
-                return View(loginModel);
+                return this.View(loginModel);
             }
 
-            var result = UserService.LogUser(loginModel);
+            var result = this.UserService.LogUser(loginModel);
 
             if (result != SignInResult.Success)
             {
-                ViewData[GlobalConstants.ModelError] = GlobalConstants.LoginError;
-                return View(loginModel);
+                this.ViewData[GlobalConstants.ModelError] = GlobalConstants.LoginError;
+                return this.View(loginModel);
             }
 
             return RedirectToAction("Index", "Home");
@@ -47,7 +53,12 @@
         [AllowAnonymous]
         public IActionResult Register()
         {
-            return View();
+            if (this.User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            return this.View();
         }
 
         [HttpPost]
@@ -56,39 +67,41 @@
         {
             if (!ModelState.IsValid)
             {
-                return View(registerModel);
+                return this.View(registerModel);
             }
-            var result = UserService.RegisterUser(registerModel).Result;
+
+            var result = this.UserService.RegisterUser(registerModel).Result;
+
             if (result != SignInResult.Success)
             {
-                ViewData[GlobalConstants.ModelError] = 
+                this.ViewData[GlobalConstants.ModelError] = 
                     string.Format(GlobalConstants.UsernameUnique, registerModel.Username);
-                return View(registerModel);
+                return this.View(registerModel);
             }
+
             return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
         public IActionResult Logout()
         {
-            UserService.Logout();
-
+            this.UserService.Logout();
             return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
         [Route(GlobalConstants.UserProfileRoute)]
-        public IActionResult Profile(string username)
+        public IActionResult Profile(string username, bool seeProfile = false)
         {
-            bool fullAccess = User.Identity.Name == username || User.IsInRole(GlobalConstants.Admin);
-            var user = UserService.GetUser(username);
+            bool fullAccess = this.User.Identity.Name == username || this.User.IsInRole(GlobalConstants.Admin);
+            var user = this.UserService.GetUser(username);
             
-            if (fullAccess)
+            if (fullAccess && !seeProfile)
             {
-                return View("Details", user);
+                return this.View("Details", user);
             }
 
-            return View(user);
+            return this.View(user);
         }
     }
 }

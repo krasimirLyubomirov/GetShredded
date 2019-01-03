@@ -113,5 +113,37 @@
         public const string ErrorPageRoute = "/Home/Error";
 
         public const string Anonymous = "anonymous";
+
+        public const string PageLength = "PageLength";
+
+        public const string DiaryId = "diaryId";
+
+        public const string AddPageRoute = "/Pages/AddPage/{diaryId}";
+
+        public const string RedirectAfterAction = "redirectAfterAction";
+
+        public const string CommentsLength = "Comment should not be empty";
+
+        public const string Error = "Error";
+
+        public const string EmptyMessage = "Message can't be empty";
+
+        public const string UserDiaries = "/Diaries/UserDiaries/{username}";
+
+        public const string Username = "username";
+
+        public const string Jpg = "jpg";
+
+        public const string Png = "png";
+
+        public const string WrongImageType = "Image file should be jpg or png";
+
+        public const string Administration = "Administration";
+
+        public const string RoleChangeError = "User already has no role make another choice!";
+
+        public const string NullName = "Name can't be empty";
+
+        public const string EntityAlreadyExists = "This {0} entity already exists";
     }
 }
