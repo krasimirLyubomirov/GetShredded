@@ -145,5 +145,11 @@
         public const string NullName = "Name can't be empty";
 
         public const string EntityAlreadyExists = "This {0} entity already exists";
+
+        public const string DatabaseConstName = "dataFromDatabase";
+
+        public const string PageId = "pageId";
+
+        public const string Id = "id";
     }
 }

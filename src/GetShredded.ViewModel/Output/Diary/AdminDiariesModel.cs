@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using GetShredded.ViewModels.Output.Diary;
 
 namespace GetShredded.ViewModel.Output.Diary
 {

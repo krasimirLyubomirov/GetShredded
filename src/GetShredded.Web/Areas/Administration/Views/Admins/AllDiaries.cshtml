@@ -1,0 +1,94 @@
+﻿@using GetShredded.ViewModels.Output.Diary
+@model IEnumerable<GetShredded.ViewModels.Output.Diary.DiaryOutputModel>
+@{
+    ViewData["Title"] = "AllDiaries";
+    int count = 0;
+}
+
+<div class="container  col-md-12 mt-5 table-responsive">
+
+    <table class="table table-bordered table-striped table-hover text-white" id="@GlobalConstants.DatabaseConstName">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col" class="text-center">#</th>
+                <th scope="col" class="text-center">Title</th>
+                <th scope="col" class="text-center">Type</th>
+                <th scope="col" class="text-center">User</th>
+                <th scope="col" class="text-center">Comments Count</th>
+                <th scope="col" class="text-center">Rating</th>
+                <th scope="col" class="text-center">Total Ratings</th>
+                <th scope="col" class="text-center">Total Pages</th>
+                <th scope="col" class="text-center">Creation Date</th>
+                <th scope="col" class="text-center">Last Updated</th>
+                <th scope="col" class="text-center">Followers</th>
+                <th scope="col" class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var m in Model)
+            {
+
+                {
+                    count++;
+                }
+                <tr>
+                    <th scope="row" class="text-center">@count</th>
+                    <td class="text-center">@m.Title</td>
+                    <td class="text-center">@m.Type.Type</td>
+                    @if (m.User == null)
+                    {
+                        <td class="text-center">@GlobalConstants.DeletedUser</td>
+                    }
+                    else
+                    {
+                        <td class="text-center">@m.User.Username</td>
+                    }
+
+                    <td class="text-center">@m.Comments.Count</td>
+                    <td class="text-center">@m.Rating</td>
+                    <td class="text-center">@m.Ratings.Count</td>
+                    <td class="text-center">@m.Pages.Count</td>
+                    <td class="text-center">@m.CreatedOn.ToShortDateString()</td>
+                    <td class="text-center">@m.LastEditedOn.ToShortDateString()</td>
+                    <td class="text-center">@m.Followers.Count</td>
+                    <td>
+                        <div class=" d-flex justify-content-around ">
+                            <a class="btn btn-danger js-delete" data-customer-id="@m.Id">Delete</a>
+
+                            <a asp-action="Details" asp-controller="Diaries" asp-area="" asp-route-id="@m.Id" class="btn btn-dark ">Details</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section scripts{
+
+    @{ await Html.RenderPartialAsync("_MyScriptsPartial"); }
+
+    <script>
+        $(document).ready(function () {
+            $("#dataFromDatabase").on("click", ".js-delete",
+                function () {
+                    var button = $(this);
+
+                    bootbox.confirm("Are you sure?",
+                        function (result) {
+                            if (result) {
+                                console.log("it works");
+                                $.ajax({
+                                    url: "/Administration/Admins/DeleteDiary/" + button.attr("data-customer-id"),
+                                    method: "get",
+                                    success: function () {
+                                        button.parents("tr").remove();
+                                    }
+                                });
+                            }
+
+                        });
+                });
+        });
+    </script>
+}

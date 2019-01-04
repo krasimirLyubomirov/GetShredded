@@ -1,0 +1,53 @@
+﻿@model IEnumerable<NotificationOutputModel>
+@inject INotificationService notificationService
+@{
+    ViewData["Title"] = "AllDiaries";
+    int count = 0;
+}
+<div class="container  col-md-12 mt-5 table-responsive">
+    <table class="table table-bordered" id="dataFromDatabase2">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col" class="text-center">#</th>
+                <th scope="col" class="text-center">Notification</th>
+                <th scope="col" class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody class="text-white">
+            @foreach (var m in Model)
+            {
+                {
+                    count++;
+                }
+                <tr>
+                    <th scope="row" class="text-center">@count</th>
+                    <td class="text-center">@m.Message</td>
+                    <td>
+                        <div class=" d-flex justify-content-around ">
+                            @if (!m.Seen)
+                            {
+                                <a asp-action="MarkNotificationAsSeen" asp-controller="Notifications" asp-area="" asp-route-id="@m.Id" class="btn btn-dark ">Mark as Seen</a>
+                            }
+                            <a asp-action="DeleteNotification" asp-controller="Notifications" asp-area="" asp-route-id="@m.Id" class="btn btn-dark ">Delete Notification</a>
+                            @if (this.notificationService.DiaryExists(m.UpdatedDiaryId))
+                            {
+                                <a asp-action="Details" asp-controller="Diaries" asp-area="" asp-route-id="@m.UpdatedDiaryId" class="btn btn-dark ">Diary Details</a>
+                            }
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="btn-group-justified">
+        <a class="card-link text-dark" asp-action="DeleteAllNotifications" asp-controller="Notifications" asp-route-username="@this.User.Identity.Name">Delete All Notifications</a>
+    </div>
+</div>
+@section scripts{
+    @{ await Html.RenderPartialAsync("_MyScriptsPartial"); }
+    <script>
+        $(document).ready(function () {
+            $('#dataFromDatabase2').DataTable({ responsive: true });
+        });
+    </script>
+}

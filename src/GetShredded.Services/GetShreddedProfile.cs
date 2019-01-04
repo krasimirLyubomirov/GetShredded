@@ -6,11 +6,12 @@ using GetShredded.Models;
 using GetShredded.ViewModel.Input;
 using GetShredded.ViewModel.Input.Page;
 using GetShredded.ViewModel.Input.Users;
-using GetShredded.ViewModel.Output.Comment;
 using GetShredded.ViewModel.Output.Diary;
 using GetShredded.ViewModel.Output.Information;
 using GetShredded.ViewModel.Output.Page;
 using GetShredded.ViewModel.Output.Users;
+using GetShredded.ViewModels.Output.Comment;
+using GetShredded.ViewModels.Output.Diary;
 
 namespace GetShredded.Services
 {
@@ -127,9 +128,10 @@ namespace GetShredded.Services
 
             CreateMap<Comment, CommentOutputModel>()
                 .ForMember(x => x.Id, o => o.MapFrom(x => x.Id))
-                .ForMember(x => x.Author, o => o.MapFrom(x => x.GetShreddedUser.UserName ?? GlobalConstants.DeletedUser))
+                .ForMember(x => x.User, o => o.MapFrom(x => x.GetShreddedUser.UserName ?? GlobalConstants.DeletedUser))
                 .ForMember(x => x.CommentedOn, o => o.MapFrom(x => x.CommentedOn))
-                .ForMember(x => x.Message, o => o.MapFrom(x => x.Message));
+                .ForMember(x => x.Message, o => o.MapFrom(x => x.Message))
+                .ForMember(x => x.DiaryId, o => o.NullSubstitute(default(int)));
 
             CreateMap<CommentInputModel, Comment>()
                 .ForMember(x => x.Message, o => o.MapFrom(x => x.Message))

@@ -1,11 +1,14 @@
-﻿@using GetShredded.Common
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - GetShredded</title>
+    <title>@ViewData["Title"] GetShredded</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="~/css/reset-css.css" />
     <link rel="stylesheet" type="text/css" href="~/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="~/css/dataTables.bootstrap4.min.css" />
@@ -22,32 +25,34 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" style="color: white" href="/">Home</a>
-                        </li>
-                        <li>
-                            <a class="nav-link" style="color: white" asp-action="About" asp-area="" asp-controller="Home">About</a>
-                        </li>
-                        @if (this.User.Identity.IsAuthenticated && this.User.IsInRole(GlobalConstants.Admin) || this.User.IsInRole(GlobalConstants.Moderator))
+                        @if (!this.User.Identity.IsAuthenticated)
                         {
+                            <li class="nav-item">
+                                <a class="nav-link" style="color: white" href="/">Home</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" style="color: white" asp-action="About" asp-area="" asp-controller="Home">About</a>
+                            </li>
+                        }
+                        @if (this.User.Identity.IsAuthenticated && this.User.IsInRole(GlobalConstants.Admin))
+                        {
+
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span style="color: white">Administration</span>
                                 </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    @if (this.User.IsInRole(GlobalConstants.Admin))
-                                    {
-                                        <a class="dropdown-item text-center" style="color: white" asp-controller="Admins" asp-action="AllUsers" asp-area="Administration">Users</a>
-                                    }
+                                <div class="dropdown-menu bg-primary" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item text-center" style="color: white" asp-controller="Admins" asp-action="AllUsers" asp-area="Administration">Users</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item text-center" style="color: white" asp-controller="Admins" asp-action="AllDiaries" asp-area="Administration">Diaries</a>
                                     <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item text-center" style="color: white" asp-controller="Admins" asp-action="CurrentTypes" asp-area="Administration">Types Available</a>
                                 </div>
                             </li>
                         }
                     </ul>
                 </div>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarnav">
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     @if (!this.User.Identity.IsAuthenticated)
                     {
 
@@ -65,7 +70,9 @@
                     {
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" style="color: white" asp-controller="Home" asp-action="Index">Hello @User.Identity.Name!</a>
+                                <a class="nav-link" style="color: white" asp-controller="Home" asp-action="Index">
+                                    Hello, @User.Identity.Name!
+                                </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" style="color: white" asp-controller="Users" asp-action="Logout" asp-area="">Logout</a>

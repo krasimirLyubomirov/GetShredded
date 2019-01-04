@@ -1,0 +1,73 @@
+﻿@model IEnumerable<UserAdminOutputModel>
+@{
+    ViewData["Title"] = "AllUsers";
+    int count = 0;
+}
+
+<div class="container  col-md-12 mt-5 table-responsive">
+
+    <table class="table  table-striped table-hover text-white  col-md-12" id="@GlobalConstants.DatabaseConstName">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col" class="text-center">#</th>
+                <th scope="col" class="text-center">Username</th>
+                <th scope="col" class="text-center">Role</th>
+                <th scope="col" class="text-center">Comments total</th>
+                <th scope="col" class="text-center">Diaries total</th>
+                <th scope="col" class="text-center">Messages total</th>
+                <th scope="col" class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var m in Model)
+            {
+
+                {
+                    count++;
+                }
+                <tr>
+                    <th scope="row" class="text-center">@count</th>
+                    <td class="text-center">@m.Username</td>
+                    <td class="text-center">@m.Role</td>
+                    <td class="text-center">@m.Comments</td>
+                    <td class="text-center">@m.Diaries</td>
+                    <td class="text-center">@m.MessageCount</td>
+                    <td>
+                        <div class=" d-flex justify-content-around ">
+                            <a asp-action="EditRole" asp-controller="Admins" asp-area="Administration" asp-route-id="@m.Id" class="btn btn-info">Change Role</a>
+                            <a class="btn btn-danger js-delete" data-customer-id="@m.Id">Delete</a>
+                            <a asp-action="Profile" asp-controller="Users" asp-area="" asp-route-id="@m.Username" class="btn btn-dark ">Profile</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@section scripts{
+
+    @{ await Html.RenderPartialAsync("_MyScriptsPartial"); }
+    <script>
+        $(document).ready(function () {
+            $("#dataFromDatabase").on("click", ".js-delete",
+                function () {
+                    var button = $(this);
+
+                    bootbox.confirm("Are you sure?",
+                        function (result) {
+                            if (result) {
+                                console.log("it works");
+                                $.ajax({
+                                    url: "/Administration/Admins/DeleteUser/" + button.attr("data-customer-id"),
+                                    method: "get",
+                                    success: function () {
+                                        button.parents("tr").remove();
+                                    }
+                                });
+                            }
+
+                        });
+                });
+        });
+    </script>
+}

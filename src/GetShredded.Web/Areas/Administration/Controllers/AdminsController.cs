@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace GetShredded.Web.Controllers
+namespace GetShredded.Web.Areas.Administration.Controllers
 {
     [Area(GlobalConstants.Administration)]
 	[Authorize(Roles = "admin")]

@@ -5,8 +5,8 @@ using GetShredded.Data;
 using GetShredded.Models;
 using GetShredded.Services.Contracts;
 using GetShredded.ViewModel.Input;
-using GetShredded.ViewModel.Output.Comment;
 using GetShredded.ViewModel.Output.Information;
+using GetShredded.ViewModels.Output.Comment;
 using Microsoft.AspNetCore.Identity;
 
 namespace GetShredded.Services

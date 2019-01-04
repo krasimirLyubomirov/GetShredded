@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using GetShredded.ViewModel.Output.Comment;
+using GetShredded.ViewModels.Output.Comment;
 
 namespace GetShredded.ViewModel.Output.Information
 {

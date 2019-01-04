@@ -13,6 +13,7 @@ using GetShredded.Models;
 using GetShredded.Services.Contracts;
 using GetShredded.ViewModel.Input;
 using GetShredded.ViewModel.Output.Diary;
+using GetShredded.ViewModels.Output.Diary;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

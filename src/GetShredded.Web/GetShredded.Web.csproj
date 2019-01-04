@@ -22,8 +22,4 @@
     <ProjectReference Include="..\GetShredded.Services\GetShredded.Services.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Areas\Administration\Views\" />
-  </ItemGroup>
-
 </Project>
