@@ -151,5 +151,17 @@
         public const string PageId = "pageId";
 
         public const string Id = "id";
+
+        public const string ApiRoute = "Api/GetShredded/";
+
+        public const string Users = "Users";
+
+        public const string Diaries = "Diaries";
+
+        public const string TopDiaries = "TopDiaries";
+
+        public const string GetType = "type";
+
+        public const string DiariesByType = "DiariesByType/{type}";
     }
 }
