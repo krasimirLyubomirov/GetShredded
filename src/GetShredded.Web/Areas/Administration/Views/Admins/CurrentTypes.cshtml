@@ -1,25 +1,21 @@
 ﻿@using GetShredded.ViewModels.Output.Diary
-@model IEnumerable<GetShredded.ViewModels.Output.Diary.DiaryOutputModel>
+@model IEnumerable<DiaryTypeOutputModel>
 @{
     ViewData["Title"] = "UpdateTypes";
 }
-
 <div class="container d-flex mt-5 border border-dark">
-
     <div class="row col-md-4 d-flex offset-4 btn-group-vertical justify-content-center border-dark" role="group" style="overflow-y: auto;">
-        <p class="mx-auto font-weight-bold">Current Genres</p>
+        <p class="mx-auto font-weight-bold">Current Types</p>
         @foreach (var b in Model)
         {
             <button type="button" class="btn btn-secondary btn-block" disabled="disabled">@b.Type</button>
         }
-
         <form class="form-inline mt-5" asp-area="Administration" asp-controller="Admins" asp-action="CurrentTypes" method="post">
-            <p class="card-header text-capitalize mx-auto font-weight-bold">Add new Genre</p>
+            <p class="card-header text-capitalize mx-auto font-weight-bold">Add new Type</p>
             <div class="form-group mx-auto mb-2">
-
                 <input type="text" class="form-control" id="Name" name="Name">
             </div>
-            <button type="submit" class="btn btn-primary mb-2">Add Type</button>
+            <button type="submit" class="btn btn-warning mb-2">Add Type</button>
             @if (this.ViewData.ContainsKey(GlobalConstants.Error))
             {
                 <p class="text-danger">@this.ViewData[GlobalConstants.Error]</p>
@@ -27,12 +23,8 @@
         </form>
     </div>
 </div>
-
 @section scripts
     {
-
     @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-
     @{ await Html.RenderPartialAsync("_MyScriptsPartial"); }
-
 }

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using GetShredded.ViewModels.Output.Diary;
+using GetShredded.ViewModel.Output.Diary;
 
-namespace GetShredded.ViewModel.Output.Diary
+namespace GetShredded.ViewModels.Output.Diary
 {
     public class AdminDiariesModel
     {

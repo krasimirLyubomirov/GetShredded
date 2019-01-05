@@ -47,9 +47,9 @@ namespace GetShredded.Services
             this.Context.SaveChanges();
         }
 
-        public int NewNotifications(string username)
+        public int NewNotifications(string userName)
         {
-            var user = this.UserManager.FindByNameAsync(username).GetAwaiter().GetResult();
+            var user = this.UserManager.FindByNameAsync(userName).GetAwaiter().GetResult();
 
             var newNotices = this.Context.Notifications
                 .Include(x => x.GetShreddedUser)

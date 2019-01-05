@@ -8,8 +8,10 @@ using GetShredded.Models;
 using GetShredded.Services.Contracts;
 using GetShredded.ViewModel.Input.Users;
 using GetShredded.ViewModel.Output.Diary;
-using GetShredded.ViewModel.Output.Home;
 using GetShredded.ViewModel.Output.Users;
+using GetShredded.ViewModels.Output.Diary;
+using GetShredded.ViewModels.Output.Home;
+using GetShredded.ViewModels.Output.Users;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 

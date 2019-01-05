@@ -1,13 +1,13 @@
 ﻿@using GetShredded.ViewModels.Output.Diary
-@model IEnumerable<GetShredded.ViewModels.Output.Diary.DiaryOutputModel>
+@model IEnumerable<DiaryOutputModel>
 @{
     ViewData["Title"] = "AllDiaries";
     int count = 0;
+    string id = "id=\"@GlobalConstants.DatabaseConstName\"";
 }
 
 <div class="container  col-md-12 mt-5 table-responsive">
-
-    <table class="table table-bordered table-striped table-hover text-white" id="@GlobalConstants.DatabaseConstName">
+    <table class="table table-dark" @id>
         <thead class="thead-dark">
             <tr>
                 <th scope="col" class="text-center">#</th>
@@ -24,10 +24,9 @@
                 <th scope="col" class="text-center">Actions</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody style="background-color: orange">
             @foreach (var m in Model)
             {
-
                 {
                     count++;
                 }
@@ -43,7 +42,6 @@
                     {
                         <td class="text-center">@m.User.Username</td>
                     }
-
                     <td class="text-center">@m.Comments.Count</td>
                     <td class="text-center">@m.Rating</td>
                     <td class="text-center">@m.Ratings.Count</td>
@@ -53,8 +51,7 @@
                     <td class="text-center">@m.Followers.Count</td>
                     <td>
                         <div class=" d-flex justify-content-around ">
-                            <a class="btn btn-danger js-delete" data-customer-id="@m.Id">Delete</a>
-
+                            <a class="btn btn-dark js-delete" data-customer-id="@m.Id">Delete</a>
                             <a asp-action="Details" asp-controller="Diaries" asp-area="" asp-route-id="@m.Id" class="btn btn-dark ">Details</a>
                         </div>
                     </td>
@@ -63,7 +60,6 @@
         </tbody>
     </table>
 </div>
-
 @section scripts{
 
     @{ await Html.RenderPartialAsync("_MyScriptsPartial"); }

@@ -12,6 +12,7 @@ using GetShredded.ViewModel.Output.Page;
 using GetShredded.ViewModel.Output.Users;
 using GetShredded.ViewModels.Output.Comment;
 using GetShredded.ViewModels.Output.Diary;
+using GetShredded.ViewModels.Output.Users;
 
 namespace GetShredded.Services
 {

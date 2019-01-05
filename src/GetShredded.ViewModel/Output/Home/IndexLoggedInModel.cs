@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using GetShredded.ViewModel.Output.Diary;
+using GetShredded.ViewModels.Output.Diary;
 
-namespace GetShredded.ViewModel.Output.Home
+namespace GetShredded.ViewModels.Output.Home
 {
     public class IndexLoggedInModel
     {

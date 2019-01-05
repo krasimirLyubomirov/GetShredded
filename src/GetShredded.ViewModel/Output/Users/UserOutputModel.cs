@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using GetShredded.ViewModel.Output.Diary;
 using GetShredded.ViewModel.Output.Information;
+using GetShredded.ViewModels.Output.Diary;
 
-namespace GetShredded.ViewModel.Output.Users
+namespace GetShredded.ViewModels.Output.Users
 {
     public class UserOutputModel
     {

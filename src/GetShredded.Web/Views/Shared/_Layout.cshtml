@@ -1,4 +1,17 @@
-﻿<!DOCTYPE html>
+﻿@using System.Security.Claims
+@inject IMessageService messageService
+@inject INotificationService notificationService
+@{
+    int newMessages = 0;
+    int newNotifications = 0;
+}
+@if (this.User.Identity.IsAuthenticated)
+{
+    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    newMessages = this.messageService.NewMessages(userId);
+    newNotifications = this.notificationService.NewNotifications(this.User.Identity.Name);
+}
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -18,8 +31,8 @@
 <body>
     <div class="container-flex">
         <header>
-            <nav class="navbar navbar-expand-md navbar-dark bg-primary justify-content-between w-100">
-                <a class="navbar-brand text-white" href="/">GetShredded</a>
+            <nav class="navbar navbar-expand-md navbar-dark bg-warning justify-content-between w-100">
+                <a class="navbar-brand text-dark" href="/">GetShredded</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon text-dark"></span>
                 </button>
@@ -28,39 +41,39 @@
                         @if (!this.User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a class="nav-link" style="color: white" href="/">Home</a>
+                                <a class="nav-link" style="color: black" href="/">Home</a>
                             </li>
                             <li>
-                                <a class="nav-link" style="color: white" asp-action="About" asp-area="" asp-controller="Home">About</a>
+                                <a class="nav-link" style="color: black" asp-action="About" asp-area="" asp-controller="Home">About</a>
                             </li>
                         }
                         @if (this.User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a class="nav-link" style="color: white" href="/">Training</a>
+                                <a class="nav-link" style="color: black" href="/">Training</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" style="color: white" href="/">Nutrition</a>
+                                <a class="nav-link" style="color: black" href="/">Nutrition</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" style="color: white" href="/">Supplements</a>
+                                <a class="nav-link" style="color: black" href="/">Supplements</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" style="color: white" href="/">Interviews</a>
+                                <a class="nav-link" style="color: black" href="/">Interviews</a>
                             </li>
                         }
                         @if (this.User.Identity.IsAuthenticated && this.User.IsInRole(GlobalConstants.Admin))
                         {
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span style="color: white">Administration</span>
+                                    <span style="color: black">Administration</span>
                                 </a>
-                                <div class="dropdown-menu bg-primary" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item text-center" style="color: white" asp-controller="Admins" asp-action="AllUsers" asp-area="Administration">Users</a>
+                                <div class="dropdown-menu bg-warning" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item text-center" style="color: black" asp-controller="Admins" asp-action="AllUsers" asp-area="Administration">All Users</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item text-center" style="color: white" asp-controller="Admins" asp-action="AllDiaries" asp-area="Administration">Diaries</a>
+                                    <a class="dropdown-item text-center" style="color: black" asp-controller="Admins" asp-action="AllDiaries" asp-area="Administration">All Diaries</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item text-center" style="color: white" asp-controller="Admins" asp-action="CurrentTypes" asp-area="Administration">Types Available</a>
+                                    <a class="dropdown-item text-center" style="color: black" asp-controller="Admins" asp-action="CurrentTypes" asp-area="Administration">Types</a>
                                 </div>
                             </li>
                         }
@@ -71,23 +84,48 @@
                     {
                         <ul class="navbar-nav ">
                             <li class="nav-item">
-                                <a class="nav-link" style="color: white" asp-controller="Users" asp-action="Login" asp-area="">Login</a>
+                                <a class="nav-link" style="color: black" asp-controller="Users" asp-action="Login" asp-area="">Login</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" style="color: white" asp-controller="Users" asp-action="Register" asp-area="">Register</a>
+                                <a class="nav-link" style="color: black" asp-controller="Users" asp-action="Register" asp-area="">Register</a>
                             </li>
                         </ul>
                     }
                     @if (this.User.Identity.IsAuthenticated)
                     {
                         <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" style="color: white" asp-controller="Home" asp-action="Index">
-                                    Hello, @User.Identity.Name!
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span style="color: black">Hello, @User.Identity.Name!</span>
                                 </a>
+                                <div class="dropdown-menu bg-warning" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item text-center" style="color: black" asp-action="Profile" asp-controller="Users" asp-route-id="@this.User.Identity.Name">My profile</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item text-center" style="color: black" asp-action="UserDiaries" id="MyDiaries" asp-controller="Diaries" asp-route-username="@this.User.Identity.Name">My Diaries</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item text-center" style="color: black" asp-action="Information" asp-controller="Messages" asp-route-username="@this.User.Identity.Name">
+                                        My Messages
+                                        @if (newMessages > 0)
+                                        {
+                                            <span class="badge badge-danger">@newMessages</span>
+                                        }
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item text-center" style="color: black" asp-action="Information" asp-controller="Messages" asp-route-username="@this.User.Identity.Name">
+                                        My Notifications
+                                        @if (newNotifications > 0)
+                                        {
+                                            <span class="badge badge-danger">@newNotifications</span>
+                                        }
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item text-center" style="color: black" asp-action="FollowedDiaries" asp-controller="Diaries" asp-route-username="@this.User.Identity.Name">Followed Diaries</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item text-center" style="color: black" asp-action="AllDiaries" asp-controller="Diaries">All Diaries</a>
+                                </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" style="color: white" asp-controller="Users" asp-action="Logout" asp-area="">Logout</a>
+                                <a class="nav-link" style="color: black" asp-controller="Users" asp-action="Logout" asp-area="">Logout</a>
                             </li>
                         </ul>
                     }
@@ -97,9 +135,9 @@
         <div>
             @RenderBody()
         </div>
-        <footer class=" text-center bg-primary container-fluid mx-auto" style="position: fixed; bottom: 0;right:0">
+        <footer class=" text-center bg-warning container-fluid mx-auto" style="position: fixed; bottom: 0;right:0">
             <div>
-                <p class="text-white mx-auto pt-2">&copy; GetShredded 2019. All rights reserved. </p>
+                <p class="text-dark mx-auto pt-2">&copy; GetShredded 2019. All rights reserved. </p>
             </div>
         </footer>
     </div>

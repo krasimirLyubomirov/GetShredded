@@ -1,6 +1,7 @@
 ﻿using GetShredded.ViewModel.Input.Users;
-using GetShredded.ViewModel.Output.Home;
 using GetShredded.ViewModel.Output.Users;
+using GetShredded.ViewModels.Output.Home;
+using GetShredded.ViewModels.Output.Users;
 
 namespace GetShredded.Services.Contracts
 {
