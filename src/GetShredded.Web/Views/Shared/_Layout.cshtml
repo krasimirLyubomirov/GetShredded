@@ -99,9 +99,9 @@
                                     <span style="color: black">Hello, @User.Identity.Name!</span>
                                 </a>
                                 <div class="dropdown-menu bg-warning" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item text-center" style="color: black" asp-action="Profile" asp-controller="Users" asp-route-id="@this.User.Identity.Name">My profile</a>
+                                    <a class="dropdown-item text-center" style="color: black" asp-area="" asp-controller="Users" asp-action="Profile" asp-route-seeProfile="true" asp-route-username="@this.User.Identity.Name">My Profile</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item text-center" style="color: black" asp-action="UserDiaries" id="MyDiaries" asp-controller="Diaries" asp-route-username="@this.User.Identity.Name">My Diaries</a>
+                                    <a class="dropdown-item text-center" style="color: black" asp-action="Profile" asp-controller="Users" asp-route-id="@this.User.Identity.Name">My Diaries</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item text-center" style="color: black" asp-action="Information" asp-controller="Messages" asp-route-username="@this.User.Identity.Name">
                                         My Messages
@@ -110,6 +110,7 @@
                                             <span class="badge badge-danger">@newMessages</span>
                                         }
                                     </a>
+                                    <div class="dropdown-divider"></div>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item text-center" style="color: black" asp-action="Information" asp-controller="Messages" asp-route-username="@this.User.Identity.Name">
                                         My Notifications

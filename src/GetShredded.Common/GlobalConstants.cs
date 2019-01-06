@@ -126,7 +126,7 @@
 
         public const string EmptyMessage = "Message can't be empty";
 
-        public const string UserDiaries = "/Diaries/UserDiaries/{username}";
+        public const string Motivation = "/Diaries/Motivation/{username}";
 
         public const string Username = "username";
 

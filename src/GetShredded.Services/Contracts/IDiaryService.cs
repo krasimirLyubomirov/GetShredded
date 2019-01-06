@@ -10,7 +10,7 @@ namespace GetShredded.Services.Contracts
     {
         ICollection<DiaryOutputModel> CurrentDiaries(string type);
 
-        ICollection<DiaryOutputModel> UserDiaries(string username);
+        ICollection<DiaryOutputModel> Motivation(string username);
 
         Task DeleteDiary(int id, string username);
 

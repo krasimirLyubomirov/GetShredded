@@ -49,13 +49,13 @@ namespace GetShredded.Services
             return diaries;
         }
 
-        public ICollection<DiaryOutputModel> UserDiaries(string username)
+        public ICollection<DiaryOutputModel> Motivation(string username)
         {
-            var userStories = this.Context.GetShreddedDiaries.Include(x => x.User)
+            var motivation = this.Context.GetShreddedDiaries.Include(x => x.User)
                 .Where(x => x.User.UserName.ToLower() == username.ToLower())
                 .ProjectTo<DiaryOutputModel>(Mapper.ConfigurationProvider).ToArray();
 
-            return userStories;
+            return motivation;
         }
 
         public ICollection<DiaryTypeOutputModel> Types()

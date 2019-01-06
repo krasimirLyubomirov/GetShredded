@@ -33,13 +33,13 @@ namespace GetShredded.Web.Controllers
         }
 
         [HttpGet]
-        [Route(GlobalConstants.UserDiaries)]
-        public IActionResult UserDiaries(string username)
+        [Route(GlobalConstants.Motivation)]
+        public IActionResult Motivation(string username)
         {
             var id = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             this.ViewData[GlobalConstants.Username] = username;
-            var userDiaries = this.DiaryService.UserDiaries(id);
-            return this.View(userDiaries);
+            var motivation = this.DiaryService.Motivation(id);
+            return this.View(motivation);
         }
 
         [HttpGet]
@@ -73,7 +73,7 @@ namespace GetShredded.Web.Controllers
         {
             string username = this.User.Identity.Name;
             await this.DiaryService.DeleteDiary(id, username);
-            return RedirectToAction("UserDiaries", "Diaries", new { username });
+            return RedirectToAction("Motivation", "Diaries", new { username });
         }
 
         [HttpGet]
