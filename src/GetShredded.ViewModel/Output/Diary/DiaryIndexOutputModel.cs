@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace GetShredded.ViewModels.Output.Diary
+﻿namespace GetShredded.ViewModels.Output.Diary
 {
     public class DiaryIndexOutputModel
     {

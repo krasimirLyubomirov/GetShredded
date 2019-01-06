@@ -1,12 +1,13 @@
 ﻿@model GetShredded.ViewModels.Output.Users.UserOutputModel
 @{
-    ViewData["Title"] = "UserDetails";
+    ViewData["Title"] = "Details";
 }
+
 <div class="container-fluid">
     <div class="row mt-5">
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
             <div class="text-center">
-                <h3 class="card-title" style="color: orange">User Stories</h3>
+                <h3 class="card-title" style="color: orange">User Diaries</h3>
             </div>
             <ul class="list-group text-center">
                 @if (Model.UserDiaries.Any())
@@ -19,15 +20,15 @@
                 }
                 else
                 {
-                    <li class="list-group-item text-dark">User don't have own stories!</li>
+                    <li class="list-group-item text-dark">User don't have own diaries!</li>
                 }
             </ul>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
             <div class="text-center">
-                <h3 class="card-title" style="color: orange">Followed Stories</h3>
+                <h3 class="card-title" style="color: orange">Followed Diaries</h3>
             </div>
-            <ul class="list-group">
+            <ul class="list-group text-center">
                 @if (Model.UserDiaries.Any())
                 {
                     foreach (var s in Model.FollowedDiaries)
@@ -38,19 +39,24 @@
                 }
                 else
                 {
-                    <li class="list-group-item text-Dark">User don't follow any stories!</li>
+                    <li class="list-group-item text-Dark">User don't follow any diaries!</li>
                 }
             </ul>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
             <div class="text-center">
-                <h3 class="card-title" style="color: orange">User Stories</h3>
+                <h3 class="card-title" style="color: orange">User Diaries</h3>
             </div>
-            <ul class="list-group">
+            <ul class="list-group text-center">
                 <li class="list-group-item ">Notification Count: @Model.Notifications.Count</li>
                 <li class="list-group-item ">Messages count: @Model.MessagesCount</li>
                 <li class="list-group-item ">Comments count: @Model.Comments</li>
             </ul>
+        </div>
+    </div>
+    <div class="row justify-content-center" style="margin-top: 30em">
+        <div class="col-md-1">
+            <a class="btn btn-warning" asp-area="" asp-controller="Users" asp-action="Profile" asp-route-seeProfile="true" asp-route-username="@Model.Username">View Profile</a>
         </div>
     </div>
 </div>

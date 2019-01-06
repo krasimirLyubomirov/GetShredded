@@ -8,17 +8,17 @@ namespace GetShredded.ViewModels.Output.Users
     {
         public UserOutputModel()
         {
-            this.UserDiaries = new List<DiaryIndexOutputModel>();
+            this.UserDiaries = new List<DiaryOutputModel>();
             this.Notifications = new List<NotificationOutputModel>();
             this.Messages = new List<MessageOutputModel>();
-            this.FollowedDiaries = new List<DiaryIndexOutputModel>();
+            this.FollowedDiaries = new List<DiaryOutputModel>();
         }
 
-        public ICollection<DiaryIndexOutputModel> FollowedDiaries { get; set; }
+        public ICollection<DiaryOutputModel> FollowedDiaries { get; set; }
 
         public ICollection<MessageOutputModel> Messages { get; set; }
 
-        public ICollection<DiaryIndexOutputModel> UserDiaries { get; set; }
+        public ICollection<DiaryOutputModel> UserDiaries { get; set; }
 
         public ICollection<NotificationOutputModel> Notifications { get; set; }
 
