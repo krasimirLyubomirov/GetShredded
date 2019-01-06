@@ -1,1 +1,131 @@
-﻿<h1>Details Diaries</h1>
+﻿@model GetShredded.ViewModels.Output.Diary.DiaryDetailsOutputModel
+@inject IDiaryService service
+@inject UserManager<GetShreddedUser> manager
+@{
+    ViewData["Title"] = "Details";
+
+    bool owner = this.User.Identity.Name == @Model.User;
+    var user = await this.manager.FindByNameAsync(this.User.Identity.Name);
+    var followed = this.service.IsFollowed(user.Id, Model.Id);
+    bool rated = this.service.AlreadyRated(Model.Id, this.User.Identity.Name);
+
+}
+
+<div class="row col-md-12" style="margin-top:50px;">
+    <div class="col-md-4">
+        <div class="w-100 text-center">
+            <div class="card-body">
+                <h5 class="card-title">Title:  @Model.Title</h5>
+                <hr />
+                <p class="card-text">@Model.Summary</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                @if (Model.User == null)
+                {
+                    <li><a class="list-group-item">User: @GlobalConstants.DeletedUser</a></li>
+
+                }
+                else
+                {
+                    <li><a class="list-group-item">User: @Model.User</a></li>
+
+                }
+                <li class="list-group-item">Created on: @Model.CreatedOn</li>
+                <li class="list-group-item">Last edit on: @Model.LastEditedOn</li>
+                <li class="list-group-item">Rating: @Model.Rating</li>
+            </ul>
+            <div class="card-body btn-group-justified">
+                @if (owner)
+                {
+                    <div class="container d-flex justify-content-between">
+                        <a asp-area="" asp-action="DeleteDiary" asp-controller="Diaries" asp-route-id="@Model.Id" class="btn btn-warning">Delete</a>
+                        <a asp-area="" asp-action="AddPage" asp-controller="Pages" asp-route-id="@Model.Id" class="btn btn-warning">Page</a>
+                    </div>
+                }
+                @if (followed && !owner)
+                {
+                    <a asp-area="" asp-action="UnFollow" asp-controller="Diaries" asp-route-id="@Model.Id" class="btn btn-warning">UnFollow</a>
+
+                }
+                @if (!owner && !followed)
+                {
+                    <a asp-action="Follow" asp-controller="Diaries" asp-area="" asp-route-id="@Model.Id" class="btn btn-warning">Follow</a>
+
+                }
+            </div>
+            @if (!owner && !rated)
+            {
+                <hr />
+                <div class="card-body">
+                    <form asp-action="AddRating" asp-controller="Diaries" method="post">
+                        <div class="form-group">
+                            <select name="Rating" class="col-md-12">
+                                <option selected class="text-center" disabled="disabled">Rate The Diary!</option>
+                                @for (var r = 1; r <= 10; r++)
+                                {
+                                    <option class="text-center">@r</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" value="@Model.Id" name="diaryId" hidden="hidden" />
+                        </div>
+                        <div>
+                            <button type="submit">Add Rating</button>
+                        </div>
+                    </form>
+                </div>
+
+            }
+        </div>
+    </div>
+    <div class="col-md-6 w-100 mb-1" style="max-height:800px;overflow-y:auto">
+        @await Component.InvokeAsync("PageList", new { diaryId = @Model.Id })
+    </div>
+    <div class="col-md-2">
+        @await Component.InvokeAsync("CommentsList", new { diaryId = @Model.Id })
+        <div class="card w-100 mt-1 d-flex">
+            <h5 class="text-center" style="margin-top:20px;">Leave a Comment:</h5>
+            <div class="card-body container-flex">
+                <form asp-action="AddComment" asp-controller="Comments" asp-area="" method="post">
+                    <div class="form-group">
+                        <input type="text" hidden="hidden" value="@Model.Id" name="DiaryId" />
+                        <input type="datetime" hidden="hidden" value="@DateTime.UtcNow" name="CommentedOn" />
+                        <input hidden="hidden" type="text" value="@user.UserName" name="CommentUser" />
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" placeholder="Enter your comment" rows="4" name="message" id="my-input" maxlength="100"></textarea>
+                        <span id='remainingC'></span>
+                        @if (this.TempData.ContainsKey(GlobalConstants.Error))
+                        {
+                            <span>@TempData[GlobalConstants.Error]</span>
+                        }
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-warning btn-sm">Comment</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    @{ await Html.RenderPartialAsync("_MyScriptsPartial"); }
+    <script>
+        $(document).ready(function () {
+            var len = 0;
+            var maxchar = 100;
+
+            $('#my-input').keyup(function () {
+                len = this.value.length;
+                if (len > maxchar) {
+                    return false;
+                } else if (len > 0) {
+                    $("#remainingC").html("Remaining characters: " + (maxchar - len));
+                } else {
+                    $("#remainingC").html("Remaining characters: " + (maxchar));
+                }
+            })
+        });
+    </script>
+}

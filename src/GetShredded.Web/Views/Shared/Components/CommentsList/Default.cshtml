@@ -3,11 +3,12 @@
     ViewData["Title"] = "Default";
     var diaryId = ViewData["diaryId"].ToString();
 }
+
 @if (!Model.Any())
 {
 
-    <div class="card-body w-100 border border-dark">
-        <p class="card-text">No comments for this story!</p>
+    <div class="card-body text-center w-100">
+        <h6 class="card-text">No comments for this diary!</h6>
     </div>
 }
 else
