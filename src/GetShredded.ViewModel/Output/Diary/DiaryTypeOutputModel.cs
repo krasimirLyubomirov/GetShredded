@@ -1,4 +1,4 @@
-﻿namespace GetShredded.ViewModel.Output.Diary
+﻿namespace GetShredded.ViewModels.Output.Diary
 {
     public class DiaryTypeOutputModel
     {

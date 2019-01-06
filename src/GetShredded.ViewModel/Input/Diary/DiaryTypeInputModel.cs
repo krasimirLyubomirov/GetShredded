@@ -1,4 +1,4 @@
-﻿namespace GetShredded.ViewModel.Input
+﻿namespace GetShredded.ViewModels.Input.Diary
 {
     public class DiaryTypeInputModel
     {

@@ -6,34 +6,38 @@
 }
 <div class="container d-flex justify-content-around col-md-12 col-sm-6 card-group" style="margin-top:50px;">
     <div class="col-md-4" style="overflow: auto; margin-bottom: 20px">
-        <div class="col-md-12 border border-dark">
-            <div class=" card-header text-center text-dark  container-fluid">Last Published Diaries</div>
+        <div class="col-md-12">
+            <div class="text-center">
+                <h3 class="card-title" style="color: orange">Last Published Diaries</h3>
+            </div>
             @foreach (var s in model.Diaries)
             {
-                <div class="card-body w-100 border border-dark mt-1 mb-1">
+                <div class="card-body w-100 mt-1 mb-1">
                     <div class="container d-flex justify-content-between row mx-auto">
                         <h5 class="card-title">Title: @s.Title</h5>
-                        <h6 class="card-subtitle text-muted">Published: @s.CreatedOn</h6>
+                        <h5 class="card-title">Published: @s.CreatedOn</h5>
                     </div>
                     <hr style="height: 2px" />
-                    <div class="container d-flex justify-content-between row">
+                    <div class="container d-flex justify-content-between row mx-auto">
                         @if (s.User == null)
                         {
-                            <h6 class="card-title text-center">User: @GlobalConstants.DeletedUser</h6>
-
+                            <h5 class="card-title">User: @GlobalConstants.DeletedUser</h5>
                         }
                         else
                         {
-                            <h6 class="card-title text-center">User: @s.User</h6>
-
+                            <h5 class="card-title">User: @s.User</h5>
                         }
-                        <h6 class="card-subtitle text-muted">Type: @s.DiaryType</h6>
+                        <h5 class="card-title">Type: @s.DiaryType</h5>
                     </div>
                     <hr />
-                    @s.Summary
+                    <div class="text-center">
+                        @s.Summary
+                    </div>
                     <hr />
-                    <a asp-action="Details" asp-controller="Diaries" asp-route-id="@s.Id" class="card-link"><i class="fas fa-book-open"></i>Go to Diary</a>
-                    <hr />
+                    <div class="text-center">
+                        <a class="btn btn-warning" asp-action="Details" asp-controller="Diaries" asp-route-id="@s.Id">View Diary</a>
+                        <hr />
+                    </div>
                 </div>
             }
         </div>

@@ -15,7 +15,7 @@
                     foreach (var s in Model.UserDiaries)
                     {
 
-                        <a asp-action="Details" asp-route-id="@s.Id" asp-controller="Diaries" class="list-group-item list-group-item-action list-group-item-dark">@s.Title</a>
+                        <a asp-action="Details" asp-route-id="@s.Id" asp-controller="Diaries" class="list-group-item list-group-item-action list-group-item" style="color: orange">@s.Title</a>
                     }
                 }
                 else

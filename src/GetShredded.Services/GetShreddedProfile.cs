@@ -1,15 +1,14 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using AutoMapper;
 using GetShredded.Common;
 using GetShredded.Models;
 using GetShredded.ViewModel.Input;
 using GetShredded.ViewModel.Input.Page;
 using GetShredded.ViewModel.Input.Users;
-using GetShredded.ViewModel.Output.Diary;
 using GetShredded.ViewModel.Output.Information;
 using GetShredded.ViewModel.Output.Page;
 using GetShredded.ViewModel.Output.Users;
+using GetShredded.ViewModels.Input.Diary;
 using GetShredded.ViewModels.Output.Comment;
 using GetShredded.ViewModels.Output.Diary;
 using GetShredded.ViewModels.Output.Users;
@@ -34,8 +33,7 @@ namespace GetShredded.Services
                 .ForMember(x => x.Pages, opt => opt.MapFrom(x => x.Pages))
                 .ForMember(x => x.Title, o => o.MapFrom(x => x.Title))
                 .ForMember(x => x.Type, o => o.MapFrom(x => x.Type))
-                .ForMember(x => x.Id, o => o.MapFrom(x => x.Id))
-                .ForMember(x => x.ImageUrl, o => o.AllowNull());
+                .ForMember(x => x.Id, o => o.MapFrom(x => x.Id));
 
             CreateMap<GetShreddedDiary, DiaryIndexOutputModel>()
                 .ForMember(opt => opt.User, cfg => cfg.MapFrom(x => x.User.UserName))
@@ -60,7 +58,6 @@ namespace GetShredded.Services
                 .ForMember(x => x.Title, opt => opt.MapFrom(x => x.Title))
                 .ForMember(x => x.DiaryType, opt => opt.MapFrom(x => x.Type.Name))
                 .ForMember(x => x.Rating, cfg => cfg.MapFrom(x => x.Rating))
-                .ForMember(x => x.ImageUrl, o => o.MapFrom(x => x.ImageUrl))
                 .ForMember(opt => opt.Summary, cfg => cfg.NullSubstitute(GlobalConstants.NoSummary));
 
             CreateMap<GetShreddedUser, UserOutputModel>()

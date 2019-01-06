@@ -1,14 +1,10 @@
-﻿using System;
-
-namespace GetShredded.ViewModels.Output.Diary
+﻿namespace GetShredded.ViewModels.Output.Diary
 {
     public class DiaryDetailsOutputModel
     {
         public int Id { get; set; }
 
         public string Title { get; set; }
-
-        public string ImageUrl { get; set; }
 
         public string Summary { get; set; }
 

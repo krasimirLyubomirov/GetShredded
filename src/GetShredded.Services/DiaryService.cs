@@ -12,7 +12,7 @@ using GetShredded.Data;
 using GetShredded.Models;
 using GetShredded.Services.Contracts;
 using GetShredded.ViewModel.Input;
-using GetShredded.ViewModel.Output.Diary;
+using GetShredded.ViewModels.Input.Diary;
 using GetShredded.ViewModels.Output.Diary;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -122,15 +122,10 @@ namespace GetShredded.Services
 
         public async Task<int> CreateDiary(DiaryInputModel inputModel)
         {
-            var accloudinary = SetCloudinary();
-
-            var url = await UploadImage(accloudinary, inputModel.StoryImage, inputModel.Title);
-
             var newDiary = Mapper.Map<GetShreddedDiary>(inputModel);
 
             newDiary.User = await this.UserManager.FindByNameAsync(inputModel.User);
-            newDiary.Type = this.Context.DiaryTypes.First(x => x.Name == inputModel.Genre);
-            newDiary.ImageUrl = url ?? GlobalConstants.DefaultNoImage;
+            newDiary.Type = this.Context.DiaryTypes.First(x => x.Name == inputModel.Type);
 
             this.Context.GetShreddedDiaries.Add(newDiary);
             await this.Context.SaveChangesAsync();

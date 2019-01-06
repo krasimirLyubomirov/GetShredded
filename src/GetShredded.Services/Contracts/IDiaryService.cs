@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using GetShredded.ViewModel.Input;
-using GetShredded.ViewModel.Output.Diary;
+using GetShredded.ViewModels.Input.Diary;
 using GetShredded.ViewModels.Output.Diary;
 
 namespace GetShredded.Services.Contracts

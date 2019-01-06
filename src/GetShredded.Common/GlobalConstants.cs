@@ -64,8 +64,6 @@
 
         public const int DiarySummaryLength = 200;
 
-        public const string DiaryImageDisplay = "Diary Image";
-
         public const string NoTitleAdded = "Page has no title";
 
         public const string DeletedUser = "Deleted User";

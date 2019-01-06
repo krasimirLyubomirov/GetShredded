@@ -14,12 +14,11 @@
         {
             foreach (var s in Model.UserDiaries)
             {
-                <div class="w-100 border border-info">
+                <div class="w-100">
                     <div class="media">
-                        <img class="align-self-start mt-1 mr-3 image-fluid" src="@s.ImageUrl" height="200" width="200" alt="Generic placeholder image">
                         <div class="media-body">
-                            <h3 class="mt-0"> Diary Title:@s.Title</h3>
-                            <a asp-action="Details" asp-controller="Diaries" asp-route-id="@s.Id" asp-area="" class="btn btn-link">Go to Diary</a>
+                            <h3 class="mt-0"> Diary Title: @s.Title</h3>
+                            <a class="text-warning" asp-action="Details" asp-controller="Diaries" asp-route-id="@s.Id" asp-area="">View Diary</a>
                             <hr />
                             <h5>Summary:</h5>
                             <p>

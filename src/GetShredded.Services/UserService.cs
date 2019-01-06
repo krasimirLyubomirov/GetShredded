@@ -7,7 +7,6 @@ using GetShredded.Data;
 using GetShredded.Models;
 using GetShredded.Services.Contracts;
 using GetShredded.ViewModel.Input.Users;
-using GetShredded.ViewModel.Output.Diary;
 using GetShredded.ViewModel.Output.Users;
 using GetShredded.ViewModels.Output.Diary;
 using GetShredded.ViewModels.Output.Home;

@@ -8,7 +8,8 @@
         <p class="mx-auto font-weight-bold">Current Types</p>
         @foreach (var b in Model)
         {
-            <button type="button" class="btn btn-secondary btn-block" disabled="disabled">@b.Type</button>
+            <button type="button" class="btn btn-warning btn-block" disabled="disabled">@b.Type</button>
+                                                                                               <hr/>
         }
         <form class="form-inline mt-5" asp-area="Administration" asp-controller="Admins" asp-action="CurrentTypes" method="post">
             <p class="card-header text-capitalize mx-auto font-weight-bold">Add new Type</p>

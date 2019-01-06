@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using GetShredded.ViewModel.Output.Diary;
 using GetShredded.ViewModel.Output.Page;
 using GetShredded.ViewModel.Output.Users;
 using GetShredded.ViewModels.Output.Comment;
@@ -22,8 +21,6 @@ namespace GetShredded.ViewModels.Output.Diary
         public int Id { get; set; }
 
         public string Title { get; set; }
-
-        public string ImageUrl { get; set; }
 
         public string Summary { get; set; }
 

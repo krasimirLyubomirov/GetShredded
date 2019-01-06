@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using GetShredded.Common;
 using Microsoft.AspNetCore.Http;
 
-namespace GetShredded.ViewModel.Input
+namespace GetShredded.ViewModels.Input.Diary
 {
     public class DiaryInputModel
     {
@@ -17,15 +17,11 @@ namespace GetShredded.ViewModel.Input
         public string Summary { get; set; }
 
         [Required]
-        public string Genre { get; set; }
+        public string Type { get; set; }
 
         [Required]
         public DateTime CreatedOn { get; set; }
 
         public string User { get; set; }
-
-        [Display(Name = GlobalConstants.DiaryImageDisplay)]
-        [DataType(DataType.Upload)]
-        public IFormFile StoryImage { get; set; }
     }
 }
