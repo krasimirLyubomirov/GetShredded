@@ -83,29 +83,30 @@
         @await Component.InvokeAsync("PageList", new { diaryId = @Model.Id })
     </div>
     <div class="col-md-2">
-        @await Component.InvokeAsync("CommentsList", new { diaryId = @Model.Id })
-        <div class="card w-100 mt-1 d-flex">
-            <h5 class="text-center" style="margin-top:20px;">Leave a Comment:</h5>
-            <div class="card-body container-flex">
-                <form asp-action="AddComment" asp-controller="Comments" asp-area="" method="post">
-                    <div class="form-group">
-                        <input type="text" hidden="hidden" value="@Model.Id" name="DiaryId" />
-                        <input type="datetime" hidden="hidden" value="@DateTime.UtcNow" name="CommentedOn" />
-                        <input hidden="hidden" type="text" value="@user.UserName" name="CommentUser" />
-                    </div>
-                    <div class="form-group">
-                        <textarea class="form-control" placeholder="Enter your comment" rows="4" name="message" id="my-input" maxlength="100"></textarea>
-                        <span id='remainingC'></span>
-                        @if (this.TempData.ContainsKey(GlobalConstants.Error))
-                        {
-                            <span>@TempData[GlobalConstants.Error]</span>
-                        }
-                    </div>
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-warning btn-sm">Comment</button>
-                    </div>
-                </form>
-            </div>
+        <div class="row justify-content-center">
+            <h5 class="text-center">Leave a Comment:</h5>
+            <form asp-action="AddComment" asp-controller="Comments" asp-area="" method="post">
+                <div class="form-group">
+                    <input type="text" hidden="hidden" value="@Model.Id" name="DiaryId" />
+                    <input type="datetime" hidden="hidden" value="@DateTime.UtcNow" name="CommentedOn" />
+                    <input hidden="hidden" type="text" value="@user.UserName" name="CommentUser" />
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" placeholder="Enter your comment" rows="4" name="message" id="my-input" maxlength="100"></textarea>
+                    <span id='remainingC'></span>
+                    @if (this.TempData.ContainsKey(GlobalConstants.Error))
+                    {
+                        <span>@TempData[GlobalConstants.Error]</span>
+                    }
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-warning btn-sm">Comment</button>
+                </div>
+            </form>
+        </div>
+        <br />
+        <div class="text-center">
+            @await Component.InvokeAsync("CommentsList", new { diaryId = @Model.Id })
         </div>
     </div>
 </div>

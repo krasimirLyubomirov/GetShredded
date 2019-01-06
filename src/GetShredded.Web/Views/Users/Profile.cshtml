@@ -2,7 +2,7 @@
 @inject IMessageService service
 @inject UserManager<GetShreddedUser> userManager
 @{
-    ViewData["Title"] = "Profile";
+    ViewData["Title"] = "UserProfile";
     var error = TempData[GlobalConstants.Error];
     var user = this.userManager.FindByNameAsync(this.User.Identity.Name).GetAwaiter().GetResult();
     var hasRole = this.userManager.GetRolesAsync(user).GetAwaiter().GetResult().Any(x => x == GlobalConstants.Admin);

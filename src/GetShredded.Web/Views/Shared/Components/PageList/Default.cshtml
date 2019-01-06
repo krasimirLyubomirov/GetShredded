@@ -10,29 +10,30 @@
         foreach (var s in Model)
         {
             <div class="col-md-12">
-                <div class="col-md-12 media-heading  justify-content-center">
-                    <h4 class="mt-0"> Chapter Title:@s.Title</h4>
+                <div class="col-md-12 media-heading justify-content-center text-center">
+                    <h4 class="mt-0"> Page Title: @s.Title</h4>
                     <h5 class="mt-0"> Added On: @s.CreatedOn</h5>
-                    <hr />
                 </div>
-                <div class="media-body col-md-12">
+                <hr style="height: 2px" />
+                <div class="media-body col-md-12 text-center">
                     <span class=" w-100" style="word-spacing: 3px; word-break:break-all">
                         @s.Content
                     </span>
                 </div>
+                <hr style="height: 2px" />
                 @if (haschapter && author)
                 {
-                    <div class="btn-block">
+                    <div class="container d-flex justify-content-between">
                         <a asp-action="DeletePage" asp-area="" asp-controller="Pages"
                            asp-all-route-data="new Dictionary<string, string>{
                     {GlobalConstants.DiaryId,@diaryId},
-                    { GlobalConstants.PageId,@s.Id.ToString()}};" class="btn btn-block btn-danger">Delete Page</a>
+                    { GlobalConstants.PageId,@s.Id.ToString()}};" class="btn btn-warning">Delete Page</a>
                         <a asp-action="EditPage" asp-area="" asp-controller="Pages"
-                           asp-route-id="@s.Id" class="btn btn-block btn-info">Edit Page</a>
+                           asp-route-id="@s.Id" class="btn btn-warning">Edit Page</a>
                     </div>
                 }
+                <hr style="height: 2px" />
             </div>
-            <hr style="height: 2px" />
         }
     }
     else

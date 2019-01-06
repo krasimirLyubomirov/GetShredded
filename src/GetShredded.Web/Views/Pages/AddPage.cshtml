@@ -1,1 +1,38 @@
-﻿<h1>Add Page</h1>
+﻿@model GetShredded.ViewModel.Input.Page.PageInputModel
+@{
+    ViewData["Title"] = "AddPage";
+    var diaryId = int.Parse(ViewData[GlobalConstants.DiaryId].ToString());
+}
+<div class="container d-flex col-md-6 offset-3">
+    <div class="col-md-12 w-100 mt-3" style="min-height: 700px;max-height:100%">
+        <form asp-controller="Pages" asp-action="AddPage" asp-area="" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input asp-for="User" type="hidden" class="form-control text-center" value="@User.Identity.Name" />
+                <input asp-for="CreatedOn" type="hidden" class="form-control text-center" value="@DateTime.UtcNow" />
+                <input asp-for="DiaryId" type="hidden" class="form-control text-center" value="@diaryId" />
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-4 offset-4" style="text-align:center" name="Title">Title</label>
+                <input asp-for="Title" type="text" class="form-control" name="Title" placeholder="Add title..." />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group text-center" style="max-height: 600px; overflow-y:auto ">
+                <label class="control-label text-center">Add Content</label>
+                <textarea asp-for="Content" class="form-control" placeholder="Add content..." rows="20" style="min-height:400px" id="editor"></textarea>
+                <span asp-validation-for="Content" class="text-danger"></span>
+                @if (this.ViewData.ContainsKey(GlobalConstants.PageLength))
+                {
+                    <span class="text-danger">Currently your page is: @ViewData[GlobalConstants.PageLength] long</span>
+                }
+            </div>
+            <div class="form-group col-md-12 text-center">
+                <input type="submit" value="Create" style="align-content: center" class="btn btn-warning" />
+            </div>
+        </form>
+    </div>
+</div>
+@section scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{ await Html.RenderPartialAsync("_MyScriptsPartial"); }
+}

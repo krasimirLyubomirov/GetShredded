@@ -6,30 +6,26 @@
 
 @if (!Model.Any())
 {
-
     <div class="card-body text-center w-100">
         <h6 class="card-text">No comments for this diary!</h6>
     </div>
 }
 else
 {
-    <div class="border border-dark card-text text-center text-white w-100 col-md-12 container" style="background-color: blue;">Comments</div>
-
-    <div class="container w-100 col-md-12 border border-dark" style="min-height: 500px; max-height:500px;overflow-y:auto">
+    <h5 class="text-center w-100 col-md-12 container text-dark">Comments</h5>
+    <div class="container w-100 col-md-12" style="min-height: 400px; max-height:400px;overflow-y:auto">
         @foreach (var c in Model)
         {
-            <div class="card-body w-100 border border-dark card-body mt-1">
+            <div class="w-100 card-body mt-1 text-center">
                 <p class="card-text" style="word-wrap:break-word">@c.Message</p>
                 <ul class="list-group list-group-flush">
                     @if (c.User.Equals(GlobalConstants.DeletedUser))
                     {
                         <li class="list-group-item">Author: @GlobalConstants.DeletedUser</li>
-
                     }
                     else
                     {
-                        <li><a class="list-group-item card-link" style="word-wrap: break-word" asp-action="Profile" asp-controller="Users" asp-area="" asp-route-username="@c.User">From: @c.User</a></li>
-
+                        <a class="list-group-item">From: @c.User</a>
                     }
                     <li class="list-group-item">Posted: @c.CommentedOn.ToShortDateString()</li>
                     @if (this.User.IsInRole(GlobalConstants.Admin) || this.User.IsInRole(GlobalConstants.ModelError) || this.User.Identity.Name == c.User)
@@ -39,13 +35,11 @@ else
                                asp-all-route-data="new Dictionary<string, string>{
                     {GlobalConstants.DiaryId,@diaryId},
                     { GlobalConstants.Id,@c.Id.ToString()}};"
-                               class="card-link"><i class="far fa-trash-alt">Comment</i></a>
+                               class="btn btn-warning">Delete Comment</a>
                         </li>
-
                     }
                 </ul>
             </div>
-
         }
     </div>
 }

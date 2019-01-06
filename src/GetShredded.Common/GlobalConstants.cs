@@ -16,8 +16,6 @@
 
         public const string Admin = "admin";
 
-        public const string Moderator = "moderator";
-
         public const int UserFirstNameMinLength = 3;
 
         public const int UserFirstNameMaxLength = 15;
@@ -50,9 +48,9 @@
         public const string PageInputContentError 
             = "Your chapter should not have less than 50 charaters or more than 1000 characters";
 
-        public const int PageMaxLength = 1000;
+        public const int PageMaxLength = 500;
 
-        public const int PageMinLength = 50;
+        public const int PageMinLength = 5;
 
         public const int TitleMaxLength = 100;
 
