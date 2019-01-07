@@ -9,7 +9,7 @@
     bool sameUser = this.User.Identity.Name.Equals(@Model.Username);
 }
 <div class="row container col-md-12 mt-5 mb-5 ml-1">
-    <div class="col-md-8 " style="overflow-y: auto; min-height: 300px; max-height:700px;">
+    <div class="col-md-6" style="overflow-y: auto; min-height: 300px; max-height:700px;">
         @if (Model.UserDiaries.Any())
         {
             foreach (var s in Model.UserDiaries)
@@ -36,7 +36,7 @@
             <hr class="bg-dark" />
         }
     </div>
-    <div class=" col-md-4">
+    <div class="col-md-4">
         <div class="text-center">
             <h3 class="card-title" style="color: orange">User Details</h3>
         </div>
@@ -47,14 +47,12 @@
             <li class="list-group-item ">Email: @Model.Email</li>
         </ul>
     </div>
-</div>
-@if (!sameUser)
-{
-    if (hasRole)
+    @if (!sameUser)
     {
-        <div class=" panel panel-info w-100 mt-2 border border-dark">
-            <h5 class="card-header">Leave a Message:</h5>
-            <div class="card-body">
+        <div class="col-md-2 text-center mt-2">
+            <h5 style="color: orange">Leave a Message:</h5>
+            <hr/>
+            <div>
                 <form asp-action="SendMessage" asp-controller="Messages" asp-area="" method="post">
                     <div class="form-group">
                         <input type="text" hidden="hidden" value="@this.User.Identity.Name" name="senderName" />
@@ -62,10 +60,10 @@
                         <input hidden="hidden" type="text" value="@Model.Username" name="receiverName" />
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" placeholder="Leave a message" rows="4" name="message" id="my-input" maxlength="400"></textarea>
+                        <textarea class="form-control" placeholder="Leave a message..." rows="4" name="message" id="my-input" maxlength="400"></textarea>
                         <span id='remainingC'></span>
                     </div>
-                    <button type="submit" class="btn btn-primary">Send message</button>
+                    <button type="submit" class="btn btn-warning">Send message</button>
                     @if (error != null)
                     {
                         <div>
@@ -76,7 +74,7 @@
             </div>
         </div>
     }
-} 
+</div>
 @section scripts{
     @{ await Html.RenderPartialAsync("_MyScriptsPartial"); }
     <script>

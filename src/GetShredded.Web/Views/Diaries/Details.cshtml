@@ -27,7 +27,7 @@
                 }
                 else
                 {
-                    <li><a class="list-group-item">User: @Model.User</a></li>
+                    <li><a class="list-group-item" style="color:orange" asp-area="" asp-controller="Users" asp-action="Profile" asp-route-seeProfile="true" asp-route-username="@Model.User"><h5>User: @Model.User</h5></a></li>
 
                 }
                 <li class="list-group-item">Created on: @Model.CreatedOn</li>

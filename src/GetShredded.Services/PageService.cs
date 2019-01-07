@@ -8,6 +8,7 @@ using GetShredded.Models;
 using GetShredded.Services.Contracts;
 using GetShredded.ViewModel.Input.Page;
 using GetShredded.ViewModel.Output.Page;
+using GetShredded.ViewModels.Output.Page;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 

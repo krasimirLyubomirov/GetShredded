@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using GetShredded.Common;
 
-namespace GetShredded.ViewModel.Output.Page
+namespace GetShredded.ViewModels.Output.Page
 {
     public class PageEditModel
     {
@@ -15,7 +15,7 @@ namespace GetShredded.ViewModel.Output.Page
 
         public int Length => this.Content?.Length ?? 0;
 
-        public string Author { get; set; }
+        public string User { get; set; }
 
         [Required]
         [StringLength(GlobalConstants.PageMaxLength, MinimumLength = GlobalConstants.PageMinLength, 

@@ -1,5 +1,6 @@
 ﻿using GetShredded.ViewModel.Input.Page;
 using GetShredded.ViewModel.Output.Page;
+using GetShredded.ViewModels.Output.Page;
 
 namespace GetShredded.Services.Contracts
 {

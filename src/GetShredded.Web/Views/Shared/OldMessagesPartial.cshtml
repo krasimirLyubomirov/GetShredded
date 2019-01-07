@@ -1,9 +1,10 @@
 ﻿@model IEnumerable<MessageOutputModel>
 @{
     int count = 0;
+    string id = "id=\"dataFromDb3\"";
 }
 <div class="container  col-md-12 mt-5 table-responsive">
-    <table class="table table-bordered" id="dataFromDatabase3">
+    <table class="table table-dark" @id>
         <thead class="thead-dark">
             <tr>
                 <th scope="col" class="text-center">#</th>
@@ -13,7 +14,7 @@
                 <th scope="col" class="text-center">Actions</th>
             </tr>
         </thead>
-        <tbody class="text-white">
+        <tbody style="background-color: orange">
             @foreach (var m in Model)
             {
                 {
@@ -24,9 +25,10 @@
                     <td class="text-center">@m.Sender</td>
                     <td class="text-center">@m.SendOn.ToShortDateString()</td>
                     <td class="text-center">@m.Text</td>
+
                     <td>
                         <div class=" d-flex justify-content-around ">
-                            <a asp-action="DeleteMessage" asp-controller="Messages" asp-area="" asp-route-id="@m.Id" class="btn btn-dark ">Delete</a>
+                            <a asp-action="DeleteMessage" asp-controller="Messages" asp-area="" asp-route-id="@m.Id" class="btn btn-dark">Delete</a>
                         </div>
                     </td>
                 </tr>
@@ -38,5 +40,7 @@
     </div>
 </div>
 @section scripts{
+
     @{ await Html.RenderPartialAsync("_MyScriptsPartial"); }
+
 }

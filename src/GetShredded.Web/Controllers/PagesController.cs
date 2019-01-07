@@ -2,6 +2,7 @@
 using GetShredded.Services.Contracts;
 using GetShredded.ViewModel.Input.Page;
 using GetShredded.ViewModel.Output.Page;
+using GetShredded.ViewModels.Output.Page;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

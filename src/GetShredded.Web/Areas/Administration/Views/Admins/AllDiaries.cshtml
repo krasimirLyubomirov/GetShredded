@@ -59,6 +59,12 @@
             }
         </tbody>
     </table>
+    @if (count > 0)
+    {
+        <div class="btn-group-justified">
+            <a class="card-link text-dark" asp-action="DeleteAllDiaries" asp-controller="Diaries" asp-area="" asp-route-username="@this.User.Identity.Name">Delete All Diaries</a>
+        </div>
+    }
 </div>
 @section scripts{
 

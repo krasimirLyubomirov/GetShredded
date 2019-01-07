@@ -277,5 +277,12 @@ namespace GetShredded.Services
 
             return cloudinary;
         }
+
+        public void DeleteAllDiaries(string username)
+        {
+            var diaries = this.Context.GetShreddedDiaries.ToList();
+            this.Context.GetShreddedDiaries.RemoveRange(diaries);
+            this.Context.SaveChanges();
+        }
     }
 }

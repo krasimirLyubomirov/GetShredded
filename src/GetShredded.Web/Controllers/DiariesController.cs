@@ -116,5 +116,12 @@ namespace GetShredded.Web.Controllers
             var model = this.DiaryService.FollowedDiariesByType(name, type);
             return this.View(model);
         }
+
+        [HttpGet]
+        public IActionResult DeleteAllDiaries(string username)
+        {
+            this.DiaryService.DeleteAllDiaries(username);
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

@@ -33,5 +33,7 @@ namespace GetShredded.Services.Contracts
         ICollection<DiaryOutputModel> FollowedDiaries(string username);
 
         ICollection<DiaryOutputModel> FollowedDiariesByType(string username, string type);
+
+        void DeleteAllDiaries(string username);
     }
 }

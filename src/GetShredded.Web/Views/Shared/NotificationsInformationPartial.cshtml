@@ -1,11 +1,12 @@
 ﻿@model IEnumerable<NotificationOutputModel>
 @inject INotificationService notificationService
 @{
-    ViewData["Title"] = "AllDiaries";
+    ViewData["Title"] = "UserNotifications";
     int count = 0;
+    string id = "id=\"dataFromDb2\"";
 }
 <div class="container  col-md-12 mt-5 table-responsive">
-    <table class="table table-bordered" id="dataFromDatabase2">
+    <table class="table table-dark" @id>
         <thead class="thead-dark">
             <tr>
                 <th scope="col" class="text-center">#</th>
@@ -13,7 +14,7 @@
                 <th scope="col" class="text-center">Actions</th>
             </tr>
         </thead>
-        <tbody class="text-white">
+        <tbody style="background-color: orange">
             @foreach (var m in Model)
             {
                 {
@@ -26,12 +27,12 @@
                         <div class=" d-flex justify-content-around ">
                             @if (!m.Seen)
                             {
-                                <a asp-action="MarkNotificationAsSeen" asp-controller="Notifications" asp-area="" asp-route-id="@m.Id" class="btn btn-dark ">Mark as Seen</a>
+                                <a asp-action="MarkNotificationAsSeen" asp-controller="Notifications" asp-area="" asp-route-id="@m.Id" class="btn btn-dark">Mark as Seen</a>
                             }
-                            <a asp-action="DeleteNotification" asp-controller="Notifications" asp-area="" asp-route-id="@m.Id" class="btn btn-dark ">Delete Notification</a>
+                            <a asp-action="DeleteNotification" asp-controller="Notifications" asp-area="" asp-route-id="@m.Id" class="btn btn-dark">Delete Notification</a>
                             @if (this.notificationService.DiaryExists(m.UpdatedDiaryId))
                             {
-                                <a asp-action="Details" asp-controller="Diaries" asp-area="" asp-route-id="@m.UpdatedDiaryId" class="btn btn-dark ">Diary Details</a>
+                                <a asp-action="Details" asp-controller="Diaries" asp-area="" asp-route-id="@m.UpdatedDiaryId" class="btn btn-dark">Diary Details</a>
                             }
                         </div>
                     </td>
@@ -47,7 +48,7 @@
     @{ await Html.RenderPartialAsync("_MyScriptsPartial"); }
     <script>
         $(document).ready(function () {
-            $('#dataFromDatabase2').DataTable({ responsive: true });
+            $('#dataFromDb2').DataTable({ responsive: true });
         });
     </script>
 }

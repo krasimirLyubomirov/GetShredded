@@ -9,8 +9,10 @@ using GetShredded.ViewModel.Output.Information;
 using GetShredded.ViewModel.Output.Page;
 using GetShredded.ViewModel.Output.Users;
 using GetShredded.ViewModels.Input.Diary;
+using GetShredded.ViewModels.Output.Api;
 using GetShredded.ViewModels.Output.Comment;
 using GetShredded.ViewModels.Output.Diary;
+using GetShredded.ViewModels.Output.Page;
 using GetShredded.ViewModels.Output.Users;
 
 namespace GetShredded.Services
@@ -26,7 +28,7 @@ namespace GetShredded.Services
                 .ForMember(opt => opt.Followers, cfg => cfg.MapFrom(x => x.Followers.Select(xx => xx.GetShreddedUser)))
                 .ForMember(x => x.LastEditedOn, opt => opt.MapFrom(x => x.LastEditedOn.Date))
                 .ForMember(x => x.CreatedOn, opt => opt.MapFrom(x => x.CreatedOn.Date))
-                .ForMember(o => o.Rating, opt => opt.Ignore())
+                .ForMember(opt => opt.Rating, cfg => cfg.MapFrom(x => x.Ratings.Any() ? x.Ratings.Average(r => r.DiaryRating.Rating) : GlobalConstants.Zero))
                 .ForMember(o => o.User, opt => opt.MapFrom(x => x.User))
                 .ForMember(x => x.Summary, opt => opt.NullSubstitute(GlobalConstants.NoSummary))
                 .ForMember(x => x.Comments, opt => opt.MapFrom(x => x.Comments))
@@ -60,6 +62,24 @@ namespace GetShredded.Services
                 .ForMember(x => x.Rating, cfg => cfg.MapFrom(x => x.Rating))
                 .ForMember(opt => opt.Summary, cfg => cfg.NullSubstitute(GlobalConstants.NoSummary));
 
+            CreateMap<GetShreddedDiary, ApiGetShreddedDiaryOutputModel>()
+                .ForMember(x => x.Id, o => o.MapFrom(x => x.Id))
+                .ForMember(x => x.Title, o => o.MapFrom(x => x.Title))
+                .ForMember(x => x.User, o => o.MapFrom(x => x.User.UserName ?? GlobalConstants.DeletedUser))
+                .ForMember(x => x.Summary, o => o.NullSubstitute(GlobalConstants.NoSummary))
+                .ForMember(opt => opt.Rating, cfg => cfg.MapFrom(x => x.Ratings.Any() ? x.Ratings.Average(r => r.DiaryRating.Rating) : GlobalConstants.Zero))
+                .ForMember(x => x.CreatedOn, o => o.MapFrom(x => x.CreatedOn.ToShortDateString()))
+                .ForMember(x => x.LastUpdated, o => o.MapFrom(x => x.LastEditedOn.ToShortDateString()))
+                .ForMember(x => x.ImageUrl, o => o.MapFrom(x => x.ImageUrl))
+                .ForMember(x => x.Type, opt => opt.MapFrom(x => x.Type.Name))
+                .ForMember(x => x.Pages, o => o.MapFrom(x => x.Pages));
+
+            CreateMap<GetShreddedUser, ApiUserOutputModel>()
+                .ForMember(x => x.Username, o => o.MapFrom(x => x.UserName))
+                .ForMember(x => x.FirstName, o => o.MapFrom(x => x.FirstName))
+                .ForMember(x => x.LastName, o => o.MapFrom(x => x.LastName))
+                .ForMember(x => x.Diaries, o => o.MapFrom(x => x.GetShreddedDiaries));
+
             CreateMap<GetShreddedUser, UserOutputModel>()
                 .ForMember(x => x.Id, cfg => cfg.MapFrom(x => x.Id))
                 .ForMember(x => x.Username, cfg => cfg.MapFrom(x => x.UserName))
@@ -68,7 +88,8 @@ namespace GetShredded.Services
                 .ForMember(x => x.Email, cfg => cfg.MapFrom(x => x.Email))
                 .ForMember(x => x.Role, cfg => cfg.Ignore())
                 .ForMember(x => x.Comments, opt => opt.MapFrom(x => x.Comments.Count))
-                .ForMember(x => x.MessagesCount, opt => opt.MapFrom(x => x.SendMessages.Count + x.SendMessages.Count))
+                .ForMember(x => x.MessagesCount,
+                    opt => opt.MapFrom(x => x.ReceivedMessages.Count + x.SendMessages.Count))
                 .ForMember(x => x.Diaries, opt => opt.MapFrom(x => x.GetShreddedDiaries.Count))
                 .ForMember(x => x.Messages, opt => opt.MapFrom(x => x.SendMessages.Concat(x.ReceivedMessages)))
                 .ForMember(x => x.Notifications, o => o.MapFrom(x => x.Notifications))
@@ -87,8 +108,6 @@ namespace GetShredded.Services
             CreateMap<GetShreddedUser, UserAdminOutputModel>()
                 .ForMember(x => x.Id, cfg => cfg.MapFrom(x => x.Id))
                 .ForMember(x => x.Username, cfg => cfg.MapFrom(x => x.UserName))
-                .ForMember(x => x.FirstName, cfg => cfg.MapFrom(x => x.FirstName))
-                .ForMember(x => x.LastName, cfg => cfg.MapFrom(x => x.LastName))
                 .ForMember(x => x.Role, cfg => cfg.Ignore())
                 .ForMember(x => x.Diaries, cfg => cfg.MapFrom(x => x.GetShreddedDiaries.Count))
                 .ForMember(x => x.Comments, cfg => cfg.MapFrom(x => x.Comments.Count))
@@ -113,7 +132,7 @@ namespace GetShredded.Services
                 .ForMember(x => x.Content, opt => opt.MapFrom(x => x.Content))
                 .ForMember(x => x.Length, o => o.MapFrom(x => x.Content.Length))
                 .ForMember(x => x.CreatedOn, opt => opt.MapFrom(x => x.CreatedOn))
-                .ForMember(x => x.Author, o => o.MapFrom(x => x.GetShreddedUser.UserName))
+                .ForMember(x => x.User, o => o.MapFrom(x => x.GetShreddedUser.UserName))
                 .ForMember(x => x.Title, o => o.MapFrom(x => x.Title ?? GlobalConstants.NoTitleAdded))
                 .ForMember(x => x.DiaryId, o => o.MapFrom(x => x.GetShreddedDiaryId)).ReverseMap();
 
@@ -129,7 +148,7 @@ namespace GetShredded.Services
                 .ForMember(x => x.User, o => o.MapFrom(x => x.GetShreddedUser.UserName ?? GlobalConstants.DeletedUser))
                 .ForMember(x => x.CommentedOn, o => o.MapFrom(x => x.CommentedOn))
                 .ForMember(x => x.Message, o => o.MapFrom(x => x.Message))
-                .ForMember(x => x.DiaryId, o => o.NullSubstitute(default(int)));
+                .ForMember(x => x.DiaryId, o => o.MapFrom(x => x.GetShreddedDiaryId));
 
             CreateMap<CommentInputModel, Comment>()
                 .ForMember(x => x.Message, o => o.MapFrom(x => x.Message))

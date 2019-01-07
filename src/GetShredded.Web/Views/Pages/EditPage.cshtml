@@ -1,4 +1,4 @@
-﻿@model PageEditModel
+﻿@model GetShredded.ViewModels.Output.Page.PageEditModel
 @{
     ViewData["Title"] = "EditPage";
 }
@@ -7,7 +7,7 @@
         <form asp-controller="Pages" asp-action="EditPage" asp-area="" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <input asp-for="Author" type="hidden" class="form-control text-center" value="@Model.Author" />
+                <input asp-for="User" type="hidden" class="form-control text-center" value="@Model.User" />
                 <input asp-for="DiaryId" type="hidden" class="form-control text-center" value="@Model.DiaryId" />
                 <input asp-for="CreatedOn" type="hidden" class="form-control text-center" value="@DateTime.UtcNow" />
             </div>
