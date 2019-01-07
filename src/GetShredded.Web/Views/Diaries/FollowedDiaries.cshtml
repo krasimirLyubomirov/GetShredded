@@ -1,1 +1,66 @@
-﻿<h1>Followed Diaries</h1>
+﻿@model IEnumerable<GetShredded.ViewModels.Output.Diary.DiaryOutputModel>
+@inject IDiaryService Service
+@{
+    ViewData["Title"] = "FollowedDiaries";
+    var types = this.Service.Types();
+    var deletedUser = GlobalConstants.DeletedUser;
+}
+<div class="row justify-content-center" style="margin-top: 2em">
+    <div class="col-md-1">
+        <form id="myForm" asp-action="FollowedDiaries" asp-controller="Diaries">
+            <div class="form-row align-items-center">
+                <div class="col-auto">
+                    <select class="custom-select mr-sm-2" name="type" onchange="this.form.submit">
+                        <option selected>Choose...</option>
+                        @foreach (var g in types)
+                        {
+                            <option value="@g.Type">@g.Type</option>
+                        }
+                        <option value="All">All</option>
+                    </select>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<hr style="height: 2px" class="bg-warning w-75" />
+<div class="container-fluid">
+    <div class="row mt-5 mb-5" style="overflow-y: auto;">
+        @foreach (var s in Model)
+        {
+            <div class="col-lg-4 col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h4 class="card-title d-flex justify-content-between">
+                            <small>Title: @s.Title</small>
+                            <small>Type: @s.Type.Type</small>
+                        </h4>
+                        @if (s.User == null)
+                        {
+                            <h4><small>User: @deletedUser</small></h4>
+                        }
+                        else
+                        {
+                            <h4><small>User: @s.User.Username</small></h4>
+                        }
+                        <hr style="height: 2px" />
+                        <p class="card-text">@s.Summary</p>
+                    </div>
+                    <div class="card-footer">
+                        <a class="btn btn-warning" asp-controller="Diaries" asp-action="Details" asp-route-id="@s.Id" as>Go to Diary</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="mt-5">
+    </div>
+</div>
+<hr style="height: 2px" class="bg-warning w-75" />
+@section scripts{
+    @{ await Html.RenderPartialAsync("_MyScriptsPartial"); }
+    <script>
+    $("select").change(function () {
+            $("#myForm").submit();
+        });</script>
+}
