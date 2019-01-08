@@ -159,5 +159,7 @@
         public const string GetType = "type";
 
         public const string DiariesByType = "DiariesByType/{type}";
+
+        public const string AlreadyExistsInDatabase = "Type: {0} already exists";
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace GetShredded.ViewModel.Output.Users
+﻿namespace GetShredded.ViewModels.Output.Users
 {
     public class UserAdminOutputModel
     {

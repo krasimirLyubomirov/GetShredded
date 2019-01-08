@@ -63,20 +63,18 @@ namespace GetShredded.Services
             return this.Context.DiaryTypes.ProjectTo<DiaryTypeOutputModel>(Mapper.ConfigurationProvider).ToArray();
         }
 
-        public async Task Follow(string username, int id)
+        public async Task Follow(string username, string userId, int id)
         {
-            var user = await this.UserManager.FindByNameAsync(username);
-
             var userDiary = new GetShreddedUserDiary()
             {
                 GetShreddedDiaryId = id,
-                GetShreddedUserId = user.Id
+                GetShreddedUserId = userId
             };
 
-            bool followed = IsFollowed(user.Id, id);
+            bool followed = IsFollowed(userId, id);
             if (followed)
             {
-                throw new InvalidOperationException(string.Join(GlobalConstants.AlreadyFollow, user.UserName));
+                throw new InvalidOperationException(string.Join(GlobalConstants.AlreadyFollow, username));
             }
 
             this.Context.GetShreddedUserDiaries.Add(userDiary);

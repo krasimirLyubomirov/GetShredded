@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using GetShredded.ViewModel.Output.Users;
+using GetShredded.ViewModels.Output.Users;
 using Microsoft.AspNetCore.Identity;
 
 namespace GetShredded.Services.Contracts

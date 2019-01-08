@@ -16,7 +16,7 @@ namespace GetShredded.Services.Contracts
 
         ICollection<DiaryTypeOutputModel> Types();
 
-        Task Follow(string username, int id);
+        Task Follow(string username, string userId, int id);
 
         Task UnFollow(string username, int id);
 

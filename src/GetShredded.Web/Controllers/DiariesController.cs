@@ -80,7 +80,8 @@ namespace GetShredded.Web.Controllers
         public async Task<IActionResult> Follow(int id)
         {
             var username = this.User.Identity.Name;
-            await this.DiaryService.Follow(username, id);
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            await this.DiaryService.Follow(username, userId, id);
 
             return RedirectToAction("Details", "Diaries", new { id });
         }

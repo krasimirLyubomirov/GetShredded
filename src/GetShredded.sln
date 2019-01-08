@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetShredded.Services", "Get
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetShredded.ViewModels", "GetShredded.ViewModel\GetShredded.ViewModels.csproj", "{F01446F9-F142-474A-BD89-378D0E1EF9B1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetShredded.Tests", "GetShredded.Tests\GetShredded.Tests.csproj", "{0C769189-D132-49E2-8328-C7C48420A25D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{F01446F9-F142-474A-BD89-378D0E1EF9B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F01446F9-F142-474A-BD89-378D0E1EF9B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F01446F9-F142-474A-BD89-378D0E1EF9B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C769189-D132-49E2-8328-C7C48420A25D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C769189-D132-49E2-8328-C7C48420A25D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C769189-D132-49E2-8328-C7C48420A25D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C769189-D132-49E2-8328-C7C48420A25D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
