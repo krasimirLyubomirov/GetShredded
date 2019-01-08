@@ -3,11 +3,11 @@
 @{
     ViewData["Title"] = "AllDiaries";
     int count = 0;
-    string id = "id=\"@GlobalConstants.DatabaseConstName\"";
+    string id = "GlobalConstants.DatabaseConstName";
 }
 
-<div class="container  col-md-12 mt-5 table-responsive">
-    <table class="table table-dark" @id>
+<div class="container  col-md-12 mt-5 table-responsive" >
+    <table class="table table-dark" id="@id">
         <thead class="thead-dark">
             <tr>
                 <th scope="col" class="text-center">#</th>
@@ -67,15 +67,12 @@
     }
 </div>
 @section scripts{
-
     @{ await Html.RenderPartialAsync("_MyScriptsPartial"); }
-
     <script>
         $(document).ready(function () {
-            $("#dataFromDatabase").on("click", ".js-delete",
+            $("#dataFridomDatabase").on("click", ".js-delete",
                 function () {
                     var button = $(this);
-
                     bootbox.confirm("Are you sure?",
                         function (result) {
                             if (result) {

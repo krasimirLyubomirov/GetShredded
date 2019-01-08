@@ -23,10 +23,15 @@
                     <p class="text-danger">@ViewData[GlobalConstants.Error]</p>
                 }
                 <p class="text-center">Select New Role</p>
-                <select name="NewRole" class="col-md-12" style="height: 2em">
-                    <option selected class="text-center">user</option>
+                <select name="UpdatedRole" class="col-md-12" style="height: 2em">
                     @foreach (var r in Model.ApplicationRoles)
                     {
+                        if (r == Model.Role)
+                        {
+                            <option selected class="text-center">@r</option>
+                            continue;
+                        }
+
                         <option class="text-center">@r</option>
                     }
                 </select>
@@ -44,6 +49,5 @@
     </div>
 </div>
 @section scripts{
-
     @{ await Html.RenderPartialAsync("_MyScriptsPartial"); }
 }

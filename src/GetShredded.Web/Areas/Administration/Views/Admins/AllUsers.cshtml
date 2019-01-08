@@ -1,12 +1,12 @@
 ﻿@using GetShredded.ViewModels.Output.Users
-@model IEnumerable<GetShredded.ViewModels.Output.Users.UserAdminOutputModel>
+@model IEnumerable<UserAdminOutputModel>
 @{
     ViewData["Title"] = "AllUsers";
     int count = 0;
-    string id = "id=\"@GlobalConstants.DatabaseConstName\"";
+    string id = "GlobalConstants.DatabaseConstName";
 }
 <div class="container col-md-12 mt-5 table-responsive">
-    <table class="table table-dark table-striped table-hover text-white" @id>
+    <table class="table table-dark table-striped table-hover text-white" id="@id">
         <thead class="thead-dark">
             <tr>
                 <th scope="col" class="text-center">#</th>
@@ -34,7 +34,7 @@
                     <td>
                         <div class=" d-flex justify-content-around ">
                             <a asp-action="EditRole" asp-controller="Admins" asp-area="Administration" asp-route-id="@m.Id" class="btn btn-dark">Change Role</a>
-                            <a class="btn btn-dark js-delete" data-customer-id="@m.Id">Delete</a>
+                            <a class="btn btn-dark" data-customer-id="@m.Id">Delete</a>
                             <a asp-action="Profile" asp-controller="Users" asp-area="" asp-route-id="@m.Username" class="btn btn-dark ">Profile</a>
                         </div>
                     </td>
@@ -50,7 +50,6 @@
             $("#dataFromDatabase").on("click", ".js-delete",
                 function () {
                     var button = $(this);
-
                     bootbox.confirm("Are you sure?",
                         function (result) {
                             if (result) {
@@ -63,7 +62,6 @@
                                     }
                                 });
                             }
-
                         });
                 });
         });
