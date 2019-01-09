@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Training";
+}
+<div class="row container d-flex justify-content-around col-md-12  w-100" style="max-height: 600px; margin-top: 5em">
+    <div class="col-md-4">
+        <img src="~/images/Training1.jpg" alt="star wars " class="w-100" style="height: 500px" />
+    </div>
+    <div class="col-md-4 w-100 text-center">
+        <h1>Accelerate Your Muscle Growth</h1>
+        <hr style="height: 2px" class="bg-warning" />
+        <text class="text-dark">
+            The speed of each rep you perform depends on the weight being lifted, the number of reps being performed and the level of fatigue of the muscle being trained. Usually, most reps are done in a slow and controlled manner, about one to two seconds for the positive and one to two seconds for the negative. Of course, as you go heavier and the muscle fatigue intensifies, the positive portion of the rep takes longer and the negative part of the rep accelerates. Generally speaking, typical speed is about three to four seconds per rep.
+            When you perform the positive portion of your reps explosively taking less than one second to complete them your fast-twitch muscle fibers are called into action to a greater degree. Fast-twitch muscle fibers produce the greatest muscle force (i.e., strength) and have the highest potential for growth.
+            Fast reps may focus the workload more on the intended muscles. Some research suggests that fast-rep training relies more on the major muscle groups performing a particular exercise and less on the assistance muscles that help. For example, one study found that doing biceps curls with a fast rep speed predominantly used the biceps brachii muscle, as opposed to the brachialis muscle that normally assists in a biceps curl. Slower rep training, however, placed greater stress on the brachialis muscle and a little less on the biceps brachii. 
+        </text>
+        <hr style="height: 2px" class="bg-warning" />
+    </div>
+    <div class="col-md-4 ">
+        <img src="~/images/Training2.jpg" alt="star wars" class="w-100" style="height: 500px" />
+    </div>
+</div>
+@section scripts{
+    @{ await Html.RenderPartialAsync("_MyScriptsPartial"); }
+}

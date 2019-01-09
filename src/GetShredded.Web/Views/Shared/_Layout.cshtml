@@ -50,16 +50,13 @@
                         @if (this.User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a class="nav-link" style="color: black" href="/">Training</a>
+                                <a class="nav-link" style="color: black" asp-controller="Articles" asp-action="Training" asp-area="">Training</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" style="color: black" href="/">Nutrition</a>
+                                <a class="nav-link" style="color: black" asp-controller="Articles" asp-action="Nutrition" asp-area="">Nutrition</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" style="color: black" href="/">Supplements</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" style="color: black" href="/">Interviews</a>
+                                <a class="nav-link" style="color: black" asp-controller="Articles" asp-action="Supplement" asp-area="">Supplements</a>
                             </li>
                         }
                         @if (this.User.Identity.IsAuthenticated && this.User.IsInRole(GlobalConstants.Admin))

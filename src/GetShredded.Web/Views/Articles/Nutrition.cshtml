@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Nutrition";
+}
+<div class="row container d-flex justify-content-around col-md-12  w-100" style="max-height: 600px; margin-top: 5em">
+    <div class="col-md-4">
+        <img src="~/images/Nutrition1.jpg" alt="star wars " class="w-100" style="height: 500px" />
+    </div>
+    <div class="col-md-4 w-100 text-center">
+        <h1>Frontline Fat Loss</h1>
+        <hr style="height: 2px" class="bg-warning" />
+        <text class="text-dark">
+            The most efficient way to induce a longer-term state of carb tolerance is to maintain a low carbohydrate diet. This serves to deplete muscle glycogen stores such that they’ll be far more responsive to absorbing carbohydrates. Going back to our sponge analogy, carb depleting is our practical version of drying out the sponge.
+            Our short-term path to carb tolerance is exercise, particularly that which is able to significantly deplete muscle carbohydrate stores (a.k.a. glycogen). Resistance exercise is particularly efficient at inducing an elevated carbohydrate tolerant state — something that most people take advantage of with a post-workout drink like Surge.
+            The majority of fat loss occurs in a carb-depleted state, in part due to the improved carb tolerance that accompanies this condition. The sooner we can enter this optimal fat burning phase, the better the results. By focusing our first carb depletion day on getting into the optimal carb depleted state, we are kick starting fat loss and setting ourselves up for a successful cut. This critical first day is known as the priming phase. The easiest way in which to enter the optimal carb tolerance zone is to dramatically reduce carbs on this day. This is because our first day isn’t about losing fat per se; it is about priming our body for a state where it is able to destroy fat. It seems like a subtle difference at first, but makes all the difference to our body.
+        </text>
+        <hr style="height: 2px" class="bg-warning" />
+    </div>
+    <div class="col-md-4 ">
+        <img src="~/images/Nutrition2.jpg" alt="star wars" class="w-100" style="height: 500px" />
+    </div>
+</div>
+@section scripts{
+    @{ await Html.RenderPartialAsync("_MyScriptsPartial"); }
+}

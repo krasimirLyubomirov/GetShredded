@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Supplement";
+}
+<div class="row container d-flex justify-content-around col-md-12  w-100" style="max-height: 600px; margin-top: 5em">
+    <div class="col-md-4">
+        <img src="~/images/Supplement1.jpg" alt="star wars " class="w-100" style="height: 500px" />
+    </div>
+    <div class="col-md-4 w-100 text-center">
+        <h1>Bcaa’s Are Vital To Your Supplement Regimen</h1>
+        <hr style="height: 2px" class="bg-warning" />
+        <text class="text-dark">
+            Of all the ways we give you each month to get big, boosting the levels of hormones in your body that lead to muscle growth while minimizing those that chew it up might seem overly complicated. After all, it’s hard to measure such things on your own. Fortunately, Sharp and Ball State University (Muncie, Indiana) researchers did the beaker work for you in a recent study. “We found that when combined with resistance training, BCAA supplementation increased testosterone and reduced Cortisol to create a favorable anabolic environment,” he says.
+            Getting ripped involves a tightrope act between losing fat and maintaining muscle. Complicating matters is the calorie-restricted diet that a shredded physique requires. This forced starvation means you’re often in an energy deficit, which can induce an alarming amount of muscle shrinkage because catabolic enzymes will break down muscle protein just to get to the BCAAs. This self-destructive effect is like tearing down an entire building to get to a few specific bricks.
+        </text>
+        <hr style="height: 2px" class="bg-warning" />
+    </div>
+    <div class="col-md-4 ">
+        <img src="~/images/Supplement2.jpg" alt="star wars" class="w-100" style="height: 500px" />
+    </div>
+</div>
+@section scripts{
+    @{ await Html.RenderPartialAsync("_MyScriptsPartial"); }
+}
